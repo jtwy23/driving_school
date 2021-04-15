@@ -75,7 +75,7 @@ def signup_login(request):
     return render(request, 'signup_func.html')
 
 
-# this is for get activation key for active signup customer
+# The activation key for active signup customer
 def email_confirm(request, activation_key):
     user= get_object_or_404(EmailConfirmed, activation_key=activation_key)
     if user is not None:
@@ -90,7 +90,7 @@ def email_confirm(request, activation_key):
 
         condict = {'first_name': first_name, 'last_name':last_name}
         return render(request, 'registration_complete.html', condict)
-
+        
 # login function
 def login_func(request):
     if request.method == 'POST':
