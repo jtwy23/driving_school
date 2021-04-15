@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    
+
 
     # local django apps
     'home',
+    'instructor',
 ]
 
 MIDDLEWARE = [
