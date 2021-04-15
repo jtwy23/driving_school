@@ -92,7 +92,7 @@
 									<li><a href="" style="color:white;">My Profile</a></li>
 									<li><a href="" style="color:white;">My Orders</a></li>
 
-									<li><a href="" style="color:yellow;">Logout</a></li>
+									<li><a href="{% url 'logout_func' %}" style="color:yellow;">Logout</a></li>
 								</ul>
 							</li>
 							{% elif request.session.instructor_id %}
@@ -103,7 +103,7 @@
 								</div>
 								<ul class="sub-menu bg-info">
 									<li><a href="" style="color:white;">My Dashboard</a></li>
-									<li><a href="" style="color:yellow;">Logout</a></li>
+									<li><a href="{% url 'logout_func' %}" style="color:yellow;">Logout</a></li>
 								</ul>
 							</li>
 
@@ -120,7 +120,7 @@
 									<a class="btn btn-info" href="#">Login / Sign Up</a>
 								</div>
 								<ul class="sub-menu bg-info">
-									<li><a href="" style="color:white;">For Pupil</a></li>
+									<li><a href="{% url 'signup_login' %}" style="color:white;">For Pupil</a></li>
 									<li><a href="" style="color:white;">For
 											Instructor</a></li>
 								</ul>
@@ -211,13 +211,13 @@
 						<li><a href="" style="color:white;">My Profile</a></li>
 						<li><a href="" style="color:white;">My Orders</a></li>
 
-						<li><a href="" style="color:yellow;">Logout</a></li>
+						<li><a href="{% url 'logout_func' %}" style="color:yellow;">Logout</a></li>
 					</ul>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 					</span>
 				</li>
-				<li><a href="" style="color:yellow;">Logout</a></li>
+				<li><a href="{% url 'logout_func' %}" style="color:yellow;">Logout</a></li>
 
 				{% elif request.session.instructor_id %}
 
@@ -227,7 +227,7 @@
 					</div>
 					<ul class="sub-menu-m bg-info">
 						<li><a href="" style="color:white;">My Dashboard</a></li>
-						<li><a href="" style="color:yellow;">Logout</a></li>
+						<li><a href="{% url 'logout_func' %}" style="color:yellow;">Logout</a></li>
 					</ul>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -240,7 +240,7 @@
 							Dashboard</a>
 					</div>
 				</li>
-				<li><a href="" style="color:yellow;">Logout</a></li>
+				<li><a href="{% url 'logout_func' %}" style="color:yellow;">Logout</a></li>
 
 				{% else %}
 
