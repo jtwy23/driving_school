@@ -39,12 +39,7 @@
 		<div class="container">
 			<div class="flex-w flex-tr">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-					<div class="row mb-4">
-						<a href="" class="btn btn-primary col-md-5">Login with Facebook</a>
-						<div class="col-md-2"></div>
-						<a href="" class="btn btn-danger col-md-5">Login with Google</a>
-					</div>
-
+					
 					<form method="POST" action="{% url 'login_func' %}">{% csrf_token %}
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							Login Here For Customer
