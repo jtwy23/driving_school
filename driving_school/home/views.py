@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .models import EmailConfirmed, products, Categories, customer_more_information
 from django.db.models import Q
+from .forms import change_profile, change_user_profile
 # Create your views here.
 
 
@@ -179,6 +180,65 @@ def profile(request):
         # after facebook and google login they have no data in this table
         else:
             return render(request, 'profile.html')
+    else:
+        return redirect('index')
+
+
+
+# edit profile
+def edit_profile(request):
+    # if the user loged in
+    if request.user.is_authenticated:
+        user=request.user
+        # use form.py to edit profile
+        form2 = change_user_profile(instance=user)
+
+        # if user have data in customer_more_information table
+        filter_customer_details = customer_more_information.objects.filter(Customer=user)
+
+        if filter_customer_details:
+            get_customer_details = customer_more_information.objects.get(Customer=user)
+            form1=change_profile(instance=get_customer_details)
+
+            if request.method == 'POST':
+                form1 = change_profile(request.POST, instance=get_customer_details)
+                if form1.is_valid():
+                    form1.save()
+
+                form2 = change_user_profile(request.POST, instance=user)
+                if form2.is_valid():
+                    form2.save()
+
+                messages.success(request, 'You Profile is successfully Updated !!')
+                return redirect('profile')
+
+            context3={'form1':form1, 'form2':form2}
+            return render(request, 'edit_profile.html', context3)
+        # if user have not data in customer_more_information table
+        # user details save to customer_more_information table
+        else:
+            if request.method == 'POST':
+                phone_no=request.POST.get('phone_no')
+                Postcode=request.POST.get('Postcode')
+                address=request.POST.get('address')
+                # print(phone_no)
+
+                # customer more informations
+                # user details save to customer_more_information table
+                customer_more_info = customer_more_information(Customer=user, Address=address,
+                                                               Postcode=Postcode, Phone_number=phone_no)
+                customer_more_info.save()
+
+                # edit of user table
+                form2 = change_user_profile(request.POST, instance=user)
+                if form2.is_valid():
+                    form2.save()
+
+                messages.success(request, 'You Profile is successfully Updated !!')
+                return redirect('profile')
+
+            context3 = {'form2': form2}
+            return render(request, 'edit_profile.html', context3)
     else:
         return redirect('index')
 

@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'home',
     'instructor',
     'order',
+
+    # crispy_forms for make form more beautiful
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +61,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'driving_school.urls'
+
+# crispy forms for make form more beautiful
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {

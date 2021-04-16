@@ -8,6 +8,7 @@ urlpatterns = [
     path('all_lessons', views.all_lessons, name='all_lessons'), # all lessons
     path('product_search', views.product_search, name='product_search'), # for searching products
     path('profile', views.profile, name='profile'), # user profile
+    path('edit_profile', views.edit_profile, name='edit_profile'),# user profile edit
     path('login-signup', views.signup_login, name='signup_login'), # user signup
     path('login', views.login_func, name='login_func'), # user login
     path('logout_func', views.logout_func, name='logout_func'), # user logout
