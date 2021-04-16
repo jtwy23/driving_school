@@ -7,7 +7,12 @@ from .models import EmailConfirmed, products, Categories, customer_more_informat
 
 
 def index(request):
-    return render(request, 'index.html')
+    # filter all the products
+    all_products = products.objects.all()
+    # filter all categories
+    all_Categories = Categories.objects.all()
+    context1 = {'all_products':all_products, 'all_Categories':all_Categories}
+    return render(request, 'index.html', context1)
 
 
 
