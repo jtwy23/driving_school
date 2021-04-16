@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # local django apps
     'home',
     'instructor',
+    'order',
 ]
 
 MIDDLEWARE = [
