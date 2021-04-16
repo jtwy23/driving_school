@@ -8,8 +8,15 @@ from home.models import customer_more_information, products
 # Create your views here.
 # from datetime import datetime
 import datetime
-
+from django.views.generic import ListView, DetailView, View
 # Create your views here.
+import stripe
+
+
+# stripe Secret key
+stripe.api_key = "sk_test_51IMFIgGHrfeW2r6w38JXjUr4HRvbtZymCmjpAIiOnTWn7I5xO4ixgqnjZD0JJacIb7N8WOG2iIkpJqWktplQNAJR007vAjrHfH"
+
+
 
 def my_orders(request):
     return render(request, 'my_order.html')
@@ -122,3 +129,117 @@ def checkout(request):
                     return redirect('edit_profile')
         else:
             return redirect('signup_login')
+
+
+
+
+class PaymentView(View):
+    # for get
+    def get(self, *args, **kwargs):
+        user = self.request.user
+        # get the order details which is remian to payment
+        order = Order.objects.filter(user=user, ordered=False)
+        print(order)
+
+        sum_of_bill=0
+
+        # making sum of order price
+        for i in order:
+            print(i)
+            sum_of_bill = sum_of_bill + int(i.Lesson_price)
+        print(sum_of_bill)
+
+        # making condition for discount counting
+        if sum_of_bill >= 100:
+            sum_of_bill = (sum_of_bill / 100) * 70
+        else:
+            sum_of_bill = (sum_of_bill / 100) * 90
+
+        sum_of_bill = "%0.2f" % sum_of_bill
+
+        context = {
+            'sum_of_bill': sum_of_bill,
+            'order': order,
+            "DISPLAY_COUPON_FORM": False
+
+        }
+        return render(self.request, 'payment.html', context)
+
+    # for post
+    def post(self, *args, **kwargs):
+        print(self.request.user)
+        # user details
+        user=self.request.user
+
+        # filter those order, which are not paid and same user
+        order = Order.objects.filter(user=user, ordered=False)
+        print(order)
+
+        sum_of_bill = 0
+        # making condition for discount counting
+        for i in order:
+            print(i)
+            sum_of_bill = sum_of_bill + int(i.Lesson_price)
+        print(sum_of_bill)
+
+
+        try:
+            # try for making payment from stripe getway
+            customer = stripe.Customer.create(
+                email=self.request.user.email,
+                description=self.request.user.username,
+                source=self.request.POST['stripeToken']
+            )
+            amount = int(sum_of_bill)
+
+            # making condition for discount counting
+            if amount>100:
+                a = amount*70
+                print(a)
+            else:
+                a=amount*90
+                print(a)
+
+            charge = stripe.Charge.create(
+                amount=a,
+                currency="gbp",
+                customer=customer,
+                description="Payment for Driving School",
+            )
+
+            # making the orders paid and make ordered boolean True
+            for i in order:
+                i.ordered = True
+                i.save()
+
+                last_order_id=i.id
+
+
+            messages.success(self.request, 'Payment was Successfull !!')
+
+        # if there any error in payment
+        # if try is not proper working then
+        except stripe.error.CardError as e:
+            messages.info(self.request, f"{e.error.message}")
+            return redirect('index')
+
+        except stripe.error.RateLimitError as e:
+            messages.info(self.request, f"{e.error.message}")
+            return redirect('index')
+        except stripe.error.InvalidRequestError as e:
+            messages.info(self.request, "Invalid Request !")
+            return redirect('index')
+        except stripe.error.AuthenticationError as e:
+            messages.info(self.request, "Authentication Error !!")
+            return redirect('index')
+        except stripe.error.APIConnectionError as e:
+            messages.info(self.request, "Check Your Connection !")
+            return redirect('index')
+        except stripe.error.StripeError as e:
+            messages.info(self.request, "There was an error please try again !")
+            return redirect('index')
+        except Exception as e:
+            messages.info(self.request, "A serious error occured we were notified !")
+            return redirect('index')
+
+        return redirect('index')
