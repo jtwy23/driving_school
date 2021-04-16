@@ -610,7 +610,7 @@
 
 			}
 			popStr = popStr + "</div><b>Total: £" + total_price +
-				"</b><br><br><div class='row'><div class='col-md-6'><a href=''><button class='flex-c-m stext-100 cl0 size-106 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10' id='checkout'>View Cart</button></a></div><div class='col-md-6'><a href='/'><button class='flex-c-m stext-100 cl0 size-106 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10' id='clearCart' onclick='clearCart()'>Clear Cart</button></a></div></div> "
+				"</b><br><br><div class='row'><div class='col-md-6'><a href='{% url 'cart' %}'><button class='flex-c-m stext-100 cl0 size-106 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10' id='checkout'>View Cart</button></a></div><div class='col-md-6'><a href='/'><button class='flex-c-m stext-100 cl0 size-106 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10' id='clearCart' onclick='clearCart()'>Clear Cart</button></a></div></div> "
 
 			console.log(popStr);
 			document.getElementById('sideshow').innerHTML = popStr;
