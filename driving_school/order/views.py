@@ -9,3 +9,9 @@ def my_orders(request):
 # cart page
 def cart(request):
     return render(request, 'shoping-cart.html')
+
+
+
+# for Checkout
+def checkout(request):
+    return render(request, 'checkout.html')

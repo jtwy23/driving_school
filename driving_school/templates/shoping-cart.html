@@ -123,7 +123,8 @@
 						</div>
 					</div>
 
-					<a href="" class="flex-c-m stext-50 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"
+					<a href="{% url 'checkout' %}"
+						class="flex-c-m stext-50 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"
 						style="color:white;">
 						Proceed to Checkout
 					</a>
@@ -306,7 +307,7 @@
 
 	$('#checkout_money').val(JSON.stringify(checkout_total));
 
-	{% if Thank %}
+	{% if Thanks %}
 	alert('Thanks For ordering. Your Order Id is {{order_id}}. Check Your Email.')
 	localStorage.clear();
 	document.location = '/' 
