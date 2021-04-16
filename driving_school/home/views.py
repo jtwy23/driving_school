@@ -15,6 +15,33 @@ def index(request):
     return render(request, 'index.html', context1)
 
 
+# the all lesson page
+def all_lessons(request):
+    # filter all the products
+    all_products = products.objects.all()
+    # filter all categories
+    all_Categories = Categories.objects.all()
+    context1 = {'all_products': all_products, 'all_Categories': all_Categories}
+    return render(request, 'all_lessons.html', context1)
+
+
+# search all products
+def product_search(request):
+    # get the search key from the template
+    search_product  = request.GET.get('search')
+    print(search_product)
+
+    # search the lesson by icontains
+    if search_product:
+        search_result = products.objects.filter(Q(product_name__icontains = search_product) | Q(description__icontains = search_product)).order_by('-id')
+
+        search_result_count = products.objects.filter(Q(product_name__icontains = search_product) | Q(description__icontains = search_product)).count()
+
+
+        context5 = {'search_product':search_product, 'search_result' :search_result, 'search_result_count':search_result_count}
+        return render(request, 'product.html', context5)
+
+
 
 # signup fumction
 def signup_login(request):
