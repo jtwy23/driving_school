@@ -4,6 +4,7 @@ from datetime import datetime
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 import hashlib
+from instructor.models import instructor_information
 # Create your models here.
 
 
@@ -42,6 +43,7 @@ class Categories(models.Model):
 class products(models.Model):
     product_name = models.CharField(max_length=2000)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
+    Intructor = models.ForeignKey(instructor_information, on_delete=models.CASCADE, null=True, blank=True)
     product_price = models.CharField(max_length=2000)
     image = models.ImageField(upload_to='uploads/product_image')
     image2 = models.ImageField(upload_to='uploads/product_image', null=True, blank=True, default='')
