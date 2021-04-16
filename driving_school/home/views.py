@@ -151,3 +151,17 @@ def logout_func(request):
     # this is for logout from user id
     logout(request)
     return redirect('index')
+
+
+# product details page for show details of product by passing product id
+def product_detail(request, pk):
+    get_product = products.objects.get(id=pk)
+    # products category
+    cat_pro = get_product.category
+    # get all product by category
+    all_pro_cat = products.objects.filter(category=cat_pro)
+
+    context2 = {'get_product':get_product, 'all_pro_cat':all_pro_cat}
+    return render(request, 'product-detail.html', context2)
+
+

@@ -169,7 +169,7 @@
 						<!--Quick View-->
 						<!--</a>-->
 
-						<a href=""
+						<a href="{% url 'product_detail' all_prod.id %}"
 							class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
 							Details View
 						</a>
@@ -177,7 +177,8 @@
 
 					<div class="block2-txt flex-w flex-t p-t-14">
 						<div class="block2-txt-child1 flex-col-l ">
-							<a href="" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+							<a href="{% url 'product_detail' all_prod.id %}"
+								class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 								{{all_prod.product_name}}
 							</a>
 
