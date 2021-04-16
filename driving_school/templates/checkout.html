@@ -109,9 +109,7 @@
 												type="submit">
 												Checkout
 											</button>
-											<!--<a href="{% url 'payment' %}" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" type="submit">-->
-											<!--Checkout-->
-											<!--</a>-->
+
 										</form>
 									</div>
 								</td>
@@ -353,16 +351,11 @@
 
 	$('#checkout_money').val(JSON.stringify(checkout_total));
 
-	{
-		%
-		if Thank %
-	}
+	{% if Thanks %}
 	// alert('Thanks For ordering. Your Order Id is {{order_id}}. Check Your Email.')
 	localStorage.clear();
-	document.location = 'payment' {
-		%
-		endif %
-	}
+	document.location = 'payment' 
+	{% endif %}
 
 
 
