@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .models import EmailConfirmed, products, Categories, customer_more_information
+from django.db.models import Q
 # Create your views here.
 
 
@@ -37,7 +38,7 @@ def product_search(request):
 
         search_result_count = products.objects.filter(Q(product_name__icontains = search_product) | Q(description__icontains = search_product)).count()
 
-
+        print(search_result)
         context5 = {'search_product':search_product, 'search_result' :search_result, 'search_result_count':search_result_count}
         return render(request, 'product.html', context5)
 
