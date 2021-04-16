@@ -19,7 +19,12 @@ stripe.api_key = "sk_test_51IMFIgGHrfeW2r6w38JXjUr4HRvbtZymCmjpAIiOnTWn7I5xO4ixg
 
 
 def my_orders(request):
-    return render(request, 'my_order.html')
+    # get user
+    user = request.user
+    # filter those order, which are same user and ordered Boolean true
+    get_all_order = Order.objects.filter(user=user, ordered=True)
+    context = {'get_all_order':get_all_order}
+    return render(request, 'my_order.html', context)
 
 
 # cart page

@@ -90,7 +90,7 @@
 								</div>
 								<ul class="sub-menu bg-info">
 									<li><a href="{% url 'profile' %}" style="color:white;">My Profile</a></li>
-									<li><a href="" style="color:white;">My Orders</a></li>
+									<li><a href="{% url 'my_orders' %}" style="color:white;">My Orders</a></li>
 
 									<li><a href="{% url 'logout_func' %}" style="color:yellow;">Logout</a></li>
 								</ul>
@@ -209,7 +209,7 @@
 					</div>
 					<ul class="sub-menu-m bg-info">
 						<li><a href="" style="color:white;">My Profile</a></li>
-						<li><a href="" style="color:white;">My Orders</a></li>
+						<li><a href="{% url 'my_orders' %}" style="color:white;">My Orders</a></li>
 
 						<li><a href="{% url 'logout_func' %}" style="color:yellow;">Logout</a></li>
 					</ul>
