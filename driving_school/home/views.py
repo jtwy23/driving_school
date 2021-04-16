@@ -165,3 +165,20 @@ def product_detail(request, pk):
     return render(request, 'product-detail.html', context2)
 
 
+# my profile page
+def profile(request):
+    # if the user loged in
+    if request.user.is_authenticated:
+        user=request.user
+
+        filter_user = customer_more_information.objects.filter(Customer=user)
+        if filter_user:
+            get_user = customer_more_information.objects.get(Customer=user)
+            context2={'get_user':get_user}
+            return render(request, 'profile.html', context2)
+        # after facebook and google login they have no data in this table
+        else:
+            return render(request, 'profile.html')
+    else:
+        return redirect('index')
+

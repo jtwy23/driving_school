@@ -89,7 +89,7 @@
 									<a class="btn btn-info" href="#">Hello, {{user.first_name}}</a>
 								</div>
 								<ul class="sub-menu bg-info">
-									<li><a href="" style="color:white;">My Profile</a></li>
+									<li><a href="{% url 'profile' %}" style="color:white;">My Profile</a></li>
 									<li><a href="" style="color:white;">My Orders</a></li>
 
 									<li><a href="{% url 'logout_func' %}" style="color:yellow;">Logout</a></li>
