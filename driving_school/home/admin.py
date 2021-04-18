@@ -12,6 +12,7 @@ class EmailConfirmedAdmin(admin.ModelAdmin):
     def last_name(self, obj):
         return obj.user.last_name
 
+
 admin.site.register(EmailConfirmed, EmailConfirmedAdmin)
 admin.site.register(Categories)
 admin.site.register(products)

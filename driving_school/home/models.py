@@ -8,38 +8,38 @@ from instructor.models import instructor_information
 # Create your models here.
 
 
-# for sending activation link generation
+# Sends generated activation link
 class EmailConfirmed(models.Model):
-    user=models.OneToOneField(User, on_delete=models.CASCADE)
-    activation_key=models.CharField(max_length=500)
-    email_confirmed=models.BooleanField(default=False)
-    date_created=models.DateTimeField(auto_now_add=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    activation_key = models.CharField(max_length=500)
+    email_confirmed = models.BooleanField(default=False)
+    date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.user.email
 
     class Meta:
-        verbose_name_plural='User Email-Confirmed'
+        verbose_name_plural = 'User Email-Confirmed'
 
 @receiver(post_save, sender=User)
 def create_user_email_confirmation(sender, instance, created, **kwargs):
     if created:
-        dt=datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        email_confirmed_instance=EmailConfirmed(user=instance)
-        user_encoded=f'{instance.email}-{dt}'.encode()
-        activation_key=hashlib.sha224(user_encoded).hexdigest()
-        email_confirmed_instance.activation_key=activation_key
+        dt = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        email_confirmed_instance = EmailConfirmed(user=instance)
+        user_encoded = f'{instance.email}-{dt}'.encode()
+        activation_key = hashlib.sha224(user_encoded).hexdigest()
+        email_confirmed_instance.activation_key = activation_key
         email_confirmed_instance.save()
 
 
-# lesson Category table
+# Category lesson table
 class Categories(models.Model):
-    category_name=models.CharField(max_length=500)
+    category_name = models.CharField(max_length=500)
 
     def __str__(self):
         return self.category_name
 
-# lesson table
+# Lesson table
 class products(models.Model):
     product_name = models.CharField(max_length=2000)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
@@ -56,8 +56,7 @@ class products(models.Model):
         return self.product_name
 
 
-
-# for customer more details
+# Customer more details
 class customer_more_information(models.Model):
     Customer = models.ForeignKey(User, on_delete=models.CASCADE)
     Phone_number = models.CharField(max_length=200)
