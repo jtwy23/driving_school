@@ -6,7 +6,7 @@ from home.models import products
 # Create your models here.
 
 
-# order table for store all order details
+# Order table to store all order details
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     Lesson = models.ForeignKey(products, on_delete=models.CASCADE, blank=True, null=True)
@@ -26,16 +26,14 @@ class Order(models.Model):
     order_date = models.CharField(max_length=1000)
 
     def __str__(self):
-        return self.order_id + " - " + self.user.first_name+" "+ self.user.last_name
+        return self.order_id + " - " + self.user.first_name + " " + self.user.last_name
 
 
-
-# table for all cancel order in less then 24 hours
+# Table for all cancelled orders in less than 24 hours
 class cancel_order_for_money_back(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     Cancel_Time = models.DateTimeField(default=datetime.now(), blank=True)
-
-    
+   
     def __str__(self):
-        return self.user.first_name+" "+ self.user.last_name + " - " + self.order.order_id
+        return self.user.first_name + " " + self.user.last_name + " - " + self.order.order_id

@@ -5,55 +5,52 @@ from django.template.loader import render_to_string
 import random
 from .models import Order, cancel_order_for_money_back
 from home.models import customer_more_information, products
-# Create your views here.
-# from datetime import datetime
 import datetime
 from django.views.generic import ListView, DetailView, View
-# Create your views here.
 import stripe
+
+# Create your views here.
 
 
 # stripe Secret key
 stripe.api_key = "sk_test_51IMFIgGHrfeW2r6w38JXjUr4HRvbtZymCmjpAIiOnTWn7I5xO4ixgqnjZD0JJacIb7N8WOG2iIkpJqWktplQNAJR007vAjrHfH"
 
 
-
 def my_orders(request):
-    # get user
+    # Get user
     user = request.user
-    # filter those order, which are same user and ordered Boolean true
+    # Filter the orders which are same user and ordered boolean true
     get_all_order = Order.objects.filter(user=user, ordered=True)
-    context = {'get_all_order':get_all_order}
+    context = {'get_all_order': get_all_order}
     return render(request, 'my_order.html', context)
 
 
-# custmer order details page
-# get order id by passing id in link
+# Custmer order details page
+# Get order ID by passing ID in link
 def my_order_details(request, pk):
-    # get the details of order
+    # Get the details of the order
     get_the_order = Order.objects.get(id=pk)
     context = {'get_the_order':get_the_order}
     return render(request, 'my_order_details.html', context)
 
 
-# customer make order cancel
+# Pupil cancellation of order
 def customer_canceled_order(request):
-    # to get current time and date
+    # To get current time and date
     now_time = datetime.datetime.now()
     print(now_time)
 
-    # get order id to get the details
+    # Get order ID to get the details
     order_id = request.POST.get('order_id')
     get_order = Order.objects.get(id=order_id)
 
-    # get time and date of order time
+    # Get time and date of order time
     order_time = get_order.order_date
     print(order_time)
 
     date_time_str = order_time
 
-    # now need to measurement of different between of order time and now
-    # because we need to know is that 24 hours gone or note
+    # Cancellation time period
     date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
     print(date_time_obj.date())
 
@@ -63,36 +60,35 @@ def customer_canceled_order(request):
     print(differnt_time.seconds)
     print(differnt_time.microseconds)
 
-    # get time different in days
+    # Get time different in days
     differnt_time_days = differnt_time.days
 
-    # if days less than 1 that means less than 24 hours
+    # If less than 1 day that means less than 24 hours
     if differnt_time_days < 1:
         get_order.customer_cancel_order=True
         get_order.save()
-        messages.success(request, "You Will Get Your Money Back in 3 working days from Admin. Because You have canceled This Order in 24 Hours !")
+        messages.success(request, "You will receive a refund in 3 working days as you have cancelled your order within the 24 hour period.")
 
-        # if days less than 1 that means less than 24 hours save a new table for admin to pay back the customer
+        # If less than 1 that means less than 24 hours save a new table for admin to pay back the customer
         money_back_admin = cancel_order_for_money_back(user=request.user, order=get_order)
         money_back_admin.save()
 
-        return redirect('my_order_details' , get_order.id)
+        return redirect('my_order_details', get_order.id)
     else:
         get_order.customer_cancel_order = True
         get_order.save()
-        messages.success(request, "You Will Not Get Your Money Back. Because You didn't cancel This Order in 24 Hours !")
+        messages.success(request, "You are cancelling your lesson and losing your fee because you did not cancel within 24 hours of buying your lesson.")
         return redirect('my_order_details', get_order.id)
 
 
-# cart page
+# Cart
 def cart(request):
     return render(request, 'shoping-cart.html')
 
 
-
-# for Checkout
+# Checkout
 def checkout(request):
-    if request.method =="POST":
+    if request.method == "POST":
         # get all input
         prod_details = request.POST.get('prod_details')
         checkout_money = request.POST.get('checkout_money')
@@ -103,8 +99,6 @@ def checkout(request):
         all_prod_price = request.POST.get('all_prod_price')
         all_prod_qty = request.POST.get('all_prod_qty')
         all_prod_price_qty = request.POST.get('all_prod_price_qty')
-        # print('total')
-        # print(checkout_money, prod_details)
 
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
@@ -113,10 +107,7 @@ def checkout(request):
         address = request.POST.get('address')
         zip = request.POST.get('zip')
 
-
-        # print(full_address, city, postal_code, country, phone)
-
-        # save all the order to database by loop
+        # Save all the orders to database by loop
         for i in all_prod:
             print(i)
             # print(type(i))
@@ -124,7 +115,7 @@ def checkout(request):
             check_integer = i.isnumeric()
             print(check_integer)
 
-            # if the value is integer
+            # If the value is integer
             if check_integer:
                 print('yes')
                 print(i)
@@ -133,29 +124,27 @@ def checkout(request):
                 lesson_Id = int(i)
                 print(type(lesson_Id))
 
-                # by id get the lesson details
+                # By ID get the lesson details
                 get_lesson = products.objects.get(id=lesson_Id)
                 print(get_lesson)
 
-                # lesson single price
+                # Single price lesson
                 single_price = get_lesson.product_price
-                # lesson instructor
+                # Lesson instructor
                 instructor = get_lesson.Intructor
 
-                # make random order ID
+                # Generate random order ID
                 random_num = random.randint(2345678909800, 9923456789000)
 
                 uniqe_confirm = Order.objects.filter(order_id=random_num)
-                # print(random_num)
 
                 while uniqe_confirm:
                     random_num = random.randint(234567890980000, 992345678900000)
                     if not Order.objects.filter(order_id=random_num):
                         break
-                # print(random_num)
 
                 user = request.user
-                # save order
+                # Save order
                 post_order = Order(user=user, Lesson=get_lesson, Instructor=instructor, order_id=random_num, Lesson_price=single_price,
                                    first_name=first_name, last_name=last_name, email=email, phone=phone,
                                    address=address, zip=zip, order_date=datetime.datetime.now())
@@ -163,55 +152,50 @@ def checkout(request):
             else:
                 print('no')
 
-
         Thanks = True
         return render(request, 'checkout.html', {'Thanks': Thanks})
 
     else:
-        # if customer is loged in:
+        # If customer is logged in:
         if request.user.is_authenticated:
             user=request.user
-            # filter those orders which have not payment yet
+            # Filter those orders which have not made payment yet
             order = Order.objects.filter(user=user, ordered=False)
-            # print(order)
-            # for new order customer have to payment the remain unpayment order
+            # For new order customers that have unpaid orders
             if order:
-                messages.info(request, 'You Have a Order Remain to Payment !! To Order New, You Have to Pay The first One.')
+                messages.info(request, 'You have a current order still to pay. To order more please complete your current order and pay.')
                 return redirect('payment')
             else:
-                # get details about customer
-                filter_user=customer_more_information.objects.filter(Customer=user)
+                # Get customer details
+                filter_user = customer_more_information.objects.filter(Customer=user)
                 if filter_user:
-                    get_user=customer_more_information.objects.get(Customer=user)
+                    get_user = customer_more_information.objects.get(Customer=user)
                     context4 = {'get_user':get_user}
                     return render(request, 'checkout.html', context4)
                 else:
-                    # return render(request, 'checkout.html')
-                    messages.info(request, 'Please Give Us Some Information.')
+                    messages.info(request, 'Please give us some information.')
                     return redirect('edit_profile')
         else:
             return redirect('signup_login')
 
 
-
-
 class PaymentView(View):
-    # for get
+    # For get
     def get(self, *args, **kwargs):
         user = self.request.user
-        # get the order details which is remian to payment
+        # Get orders still to pay
         order = Order.objects.filter(user=user, ordered=False)
         print(order)
 
         sum_of_bill=0
 
-        # making sum of order price
+        # Order price
         for i in order:
             print(i)
             sum_of_bill = sum_of_bill + int(i.Lesson_price)
         print(sum_of_bill)
 
-        # making condition for discount counting
+        # Discount conditions
         if sum_of_bill >= 100:
             sum_of_bill = (sum_of_bill / 100) * 70
         else:
@@ -227,26 +211,25 @@ class PaymentView(View):
         }
         return render(self.request, 'payment.html', context)
 
-    # for post
+    # For post
     def post(self, *args, **kwargs):
         print(self.request.user)
-        # user details
+        # User details
         user=self.request.user
 
-        # filter those order, which are not paid and same user
+        # Filter the orders which are unpaid and the same user
         order = Order.objects.filter(user=user, ordered=False)
         print(order)
 
         sum_of_bill = 0
-        # making condition for discount counting
+        # Discount conditions
         for i in order:
             print(i)
             sum_of_bill = sum_of_bill + int(i.Lesson_price)
         print(sum_of_bill)
 
-
         try:
-            # try for making payment from stripe getway
+            # Try making payment from stripe gateway
             customer = stripe.Customer.create(
                 email=self.request.user.email,
                 description=self.request.user.username,
@@ -254,12 +237,12 @@ class PaymentView(View):
             )
             amount = int(sum_of_bill)
 
-            # making condition for discount counting
-            if amount>100:
+            # Discount conditiond
+            if amount > 100:
                 a = amount*70
                 print(a)
             else:
-                a=amount*90
+                a = amount*90
                 print(a)
 
             charge = stripe.Charge.create(
@@ -269,18 +252,17 @@ class PaymentView(View):
                 description="Payment for Driving School",
             )
 
-            # making the orders paid and make ordered boolean True
+            # Orders paid and make ordered boolean True
             for i in order:
                 i.ordered = True
                 i.save()
 
-                last_order_id=i.id
+                last_order_id = i.id
 
+            messages.success(self.request, 'Payment is Successfull!')
 
-            messages.success(self.request, 'Payment was Successfull !!')
-
-        # if there any error in payment
-        # if try is not proper working then
+        # If there is any error in payment
+        # Ff try is not working properly then
         except stripe.error.CardError as e:
             messages.info(self.request, f"{e.error.message}")
             return redirect('index')
@@ -289,19 +271,19 @@ class PaymentView(View):
             messages.info(self.request, f"{e.error.message}")
             return redirect('index')
         except stripe.error.InvalidRequestError as e:
-            messages.info(self.request, "Invalid Request !")
+            messages.info(self.request, "Invalid Request!")
             return redirect('index')
         except stripe.error.AuthenticationError as e:
-            messages.info(self.request, "Authentication Error !!")
+            messages.info(self.request, "Authentication Error!")
             return redirect('index')
         except stripe.error.APIConnectionError as e:
-            messages.info(self.request, "Check Your Connection !")
+            messages.info(self.request, "Check Your Connection!")
             return redirect('index')
         except stripe.error.StripeError as e:
-            messages.info(self.request, "There was an error please try again !")
+            messages.info(self.request, "There was an error please try again!")
             return redirect('index')
         except Exception as e:
-            messages.info(self.request, "A serious error occured we were notified !")
+            messages.info(self.request, "A serious error occured we were notified!")
             return redirect('index')
 
         return redirect('index')
