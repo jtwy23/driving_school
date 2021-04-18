@@ -3,6 +3,7 @@ from .models import EmailConfirmed, Categories, products, customer_more_informat
 
 # Register your models here.
 
+
 class EmailConfirmedAdmin(admin.ModelAdmin):
     list_display = ['user', 'first_name', 'last_name', 'activation_key', 'email_confirmed']
 
