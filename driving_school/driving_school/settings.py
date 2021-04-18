@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'home',
     'instructor',
     'order',
+    'our_company',
 
     # crispy_forms for make form more beautiful
     'crispy_forms',
