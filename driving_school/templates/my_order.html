@@ -41,7 +41,7 @@
 		</button>
 		{% endif %}
 
-		<h5>Order Id : <a href="">{{k.order_id}}</a> </h5>
+		<h5>Order Id : <a href="{% url 'my_order_details' k.id %}">{{k.order_id}}</a> </h5>
 		<h7>{{k.product_details}}</h7></br>
 
 		<span class="badge badge-info badge-pill">

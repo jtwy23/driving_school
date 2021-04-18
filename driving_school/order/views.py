@@ -27,6 +27,15 @@ def my_orders(request):
     return render(request, 'my_order.html', context)
 
 
+# custmer order details page
+# get order id by passing id in link
+def my_order_details(request, pk):
+    # get the details of order
+    get_the_order = Order.objects.get(id=pk)
+    context = {'get_the_order':get_the_order}
+    return render(request, 'my_order_details.html', context)
+
+
 # cart page
 def cart(request):
     return render(request, 'shoping-cart.html')
