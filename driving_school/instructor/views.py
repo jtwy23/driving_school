@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import instructor_information
-
+from order.models import Order
+from home.models import products
 
 
 # login for instructor
@@ -43,9 +44,26 @@ def login_func_instructor(request):
             value_func2 = {'erorr_message_2': erorr_message_2, 'instructor_log_email': instructor_log_email}
             # messages.error(request, "Invalid Credentials, Please Try Again !!")
             return render(request, 'login_func_instructor.html', value_func2)
+    else:
+        instructor_user = request.session['instructor_id']
+        if instructor_user:
+            return redirect('home_instructor')
+        else:
+            return render(request, 'login_func_instructor.html')
 
-    return render(request, 'login_func_instructor.html')
 
 
+# home page of instructor
 def home_instructor(request):
-    return render(request, 'index_instructor.html')
+    # user = request.session['instructor_first_name']
+    # get the loged in instructor session
+    user_id = request.session.get('instructor_id')
+
+    # get the instructor by id from instructor_information table
+    get_instructor_by_id = instructor_information.objects.get(id=user_id)
+
+    # filter all order by instructor_information
+    filter_order_by_instructor = Order.objects.filter(Instructor=get_instructor_by_id, ordered=True).order_by('-id')
+    # print(filter_order_by_instructor)
+    context={'filter_order_by_instructor':filter_order_by_instructor}
+    return render(request, 'index_instructor.html',context)
