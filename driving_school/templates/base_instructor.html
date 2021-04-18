@@ -34,7 +34,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                        <a class="dropdown-item" href="">My Profile</a>
+                        <a class="dropdown-item" href="{% url 'instructor_profile' %}">My Profile</a>
                             <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{% url 'logout_func' %}">Logout</a>
                         </div>
@@ -59,7 +59,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td><a class="btn btn-secondary" href=""><i class="la la-dashboard"></i> <span> My Profile</span></a></td>
+                                    <td><a class="btn btn-secondary" href="{% url 'instructor_profile' %}"><i class="la la-dashboard"></i> <span> My Profile</span></a></td>
                                 </tr>
                             </tbody>
                         </table>

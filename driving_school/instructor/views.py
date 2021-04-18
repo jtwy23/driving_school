@@ -79,3 +79,13 @@ def my_lessons(request):
     # print(filter_order_by_instructor)
     context = {'filter_lessons_by_instructor': filter_lessons_by_instructor}
     return render(request, 'my_lessons.html', context)
+
+
+# instructor profile
+def instructor_profile(request):
+    # get the loged in instructor session
+    user_id = request.session.get('instructor_id')
+    # get the instructor by id from instructor_information table
+    get_instructor_by_id = instructor_information.objects.get(id=user_id)
+    context = {'get_instructor_by_id': get_instructor_by_id}
+    return render(request, 'instructor_profile.html', context)
