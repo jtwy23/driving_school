@@ -98,3 +98,16 @@ def order_details(request, pk):
     get_order = Order.objects.get(id=pk)
     context = {'get_order': get_order}
     return render(request, 'order_details.html', context)
+    
+
+# instructor make cancel the order
+def make_cancel_order(request):
+    # get order id
+    order_id = request.POST.get('order_id')
+    # get order details
+    get_order = Order.objects.get(id=order_id)
+    # print(get_order)
+    # make instructor_cancel_order boolian field True and save
+    get_order.instructor_cancel_order=True
+    get_order.save()
+    return redirect('order_details' , get_order.id)
