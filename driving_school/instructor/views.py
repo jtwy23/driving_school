@@ -89,3 +89,12 @@ def instructor_profile(request):
     get_instructor_by_id = instructor_information.objects.get(id=user_id)
     context = {'get_instructor_by_id': get_instructor_by_id}
     return render(request, 'instructor_profile.html', context)
+
+
+# instructor order details
+# get id by passing a id by link
+def order_details(request, pk):
+    # get order details by id
+    get_order = Order.objects.get(id=pk)
+    context = {'get_order': get_order}
+    return render(request, 'order_details.html', context)

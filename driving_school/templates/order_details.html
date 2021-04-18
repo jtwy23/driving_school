@@ -1,0 +1,30 @@
+{% extends 'base_instructor.html' %}
+
+{% block title %}{{request.session.instructor_first_name}} {{request.session.instructor_last_name}} - Dashboard{% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+	<h5><p class="text-center" style="color:#07889E;">Order ID:
+	{{get_order.order_id}}</p></h5>
+
+	<span class="badge badge-info badge-pill"> <h7>Date : {{get_order.order_date}}</h7></span>
+
+	
+	<br>
+	<br>
+	<hr>
+</div>
+
+<ul class="list-group container">
+	<li class="list-group-item"><b>Customer Name :</b> {{get_order.user.first_name}} {{get_order.user.last_name}}</li>
+	<li class="list-group-item"><b>Lesson :</b> {{get_order.Lesson}}</li>
+	<li class="list-group-item"><b>Price :</b> £{{get_order.Lesson_price}}</li>
+	<li class="list-group-item"><b>Address :</b> {{get_order.address}}</li>
+	<li class="list-group-item"><b>Postcode :</b> {{get_order.zip}}</li>
+	<li class="list-group-item"><b>Phone :</b> {{get_order.phone}}</li>
+	<li class="list-group-item"><b>Email :</b> {{get_order.email}}</li>
+</ul>
+
+{% endblock %}

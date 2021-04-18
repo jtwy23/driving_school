@@ -19,7 +19,7 @@ Deshboard{% endblock %}
 				{% if filter_order_by_instructor %}
 				{% for i in filter_order_by_instructor %}
 				<tr>
-					<th scope="row"><a href="">{{i.order_id}}</a></th>
+					<th scope="row"><a href="{% url 'order_details' i.id %}">{{i.order_id}}</a></th>
 					<td>{{i.user.first_name}} {{i.user.last_name}}</td>
 					<td>{{i.order_date}}</td>
 					<td>
