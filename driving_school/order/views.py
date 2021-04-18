@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 import random
-from .models import Order
+from .models import Order, cancel_order_for_money_back
 from home.models import customer_more_information, products
 # Create your views here.
 # from datetime import datetime
@@ -34,6 +34,54 @@ def my_order_details(request, pk):
     get_the_order = Order.objects.get(id=pk)
     context = {'get_the_order':get_the_order}
     return render(request, 'my_order_details.html', context)
+
+
+# customer make order cancel
+def customer_canceled_order(request):
+    # to get current time and date
+    now_time = datetime.datetime.now()
+    print(now_time)
+
+    # get order id to get the details
+    order_id = request.POST.get('order_id')
+    get_order = Order.objects.get(id=order_id)
+
+    # get time and date of order time
+    order_time = get_order.order_date
+    print(order_time)
+
+    date_time_str = order_time
+
+    # now need to measurement of different between of order time and now
+    # because we need to know is that 24 hours gone or note
+    date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
+    print(date_time_obj.date())
+
+    differnt_time = now_time - date_time_obj
+    print(differnt_time)
+    print(differnt_time.days)
+    print(differnt_time.seconds)
+    print(differnt_time.microseconds)
+
+    # get time different in days
+    differnt_time_days = differnt_time.days
+
+    # if days less than 1 that means less than 24 hours
+    if differnt_time_days < 1:
+        get_order.customer_cancel_order=True
+        get_order.save()
+        messages.success(request, "You Will Get Your Money Back in 3 working days from Admin. Because You have canceled This Order in 24 Hours !")
+
+        # if days less than 1 that means less than 24 hours save a new table for admin to pay back the customer
+        money_back_admin = cancel_order_for_money_back(user=request.user, order=get_order)
+        money_back_admin.save()
+
+        return redirect('my_order_details' , get_order.id)
+    else:
+        get_order.customer_cancel_order = True
+        get_order.save()
+        messages.success(request, "You Will Not Get Your Money Back. Because You didn't cancel This Order in 24 Hours !")
+        return redirect('my_order_details', get_order.id)
 
 
 # cart page
