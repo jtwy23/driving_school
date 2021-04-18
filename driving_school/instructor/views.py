@@ -45,8 +45,7 @@ def login_func_instructor(request):
             # messages.error(request, "Invalid Credentials, Please Try Again !!")
             return render(request, 'login_func_instructor.html', value_func2)
     else:
-        instructor_user = request.session['instructor_id']
-        if instructor_user:
+        if request.session.get('instructor_id'):
             return redirect('home_instructor')
         else:
             return render(request, 'login_func_instructor.html')
@@ -67,3 +66,16 @@ def home_instructor(request):
     # print(filter_order_by_instructor)
     context={'filter_order_by_instructor':filter_order_by_instructor}
     return render(request, 'index_instructor.html',context)
+
+
+# intructor my lesson
+def my_lessons(request):
+    # get the loged in instructor session
+    user_id = request.session.get('instructor_id')
+    # get the instructor by id from instructor_information table
+    get_instructor_by_id = instructor_information.objects.get(id=user_id)
+    # filter all lesson by products
+    filter_lessons_by_instructor = products.objects.filter(Intructor=get_instructor_by_id)
+    # print(filter_order_by_instructor)
+    context = {'filter_lessons_by_instructor': filter_lessons_by_instructor}
+    return render(request, 'my_lessons.html', context)
