@@ -2,17 +2,19 @@
 
 {% load static %}
 
-{% block title %}Search Results{% endblock %}
+{% block title %}Search Results - Driving School{% endblock %}
 
 {% block body %}
 
 
 <head>
+	<!-- Title tag -->
 	<title>Product</title>
+	<!-- Meta tags -->
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!--===============================================================================================-->
+	<!-- Link tags -->
 	<link rel="icon" type="image/png" href="images/icons/favicon.png" />
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -28,7 +30,6 @@
 	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<!--===============================================================================================-->
 </head>
 
 <body class="animsition">
@@ -48,8 +49,8 @@
 
 				Suggestion:
 				<ul>
-					<li>Try searching other Product</li>
-					<li>Try searchin other Content</li>
+					<li>Try searching other Products</li>
+					<li>Try searching other Contents</li>
 				</ul>
 			</div>
 			{% endif %}
@@ -65,7 +66,7 @@
 
 							<a href="{% url 'product_detail' i.id %}"
 								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-								Details View
+								View Details
 							</a>
 						</div>
 
@@ -85,11 +86,10 @@
 				</div>
 				{% endfor %}
 			</div>
-			<!-- Load more -->
 		</div>
 	</div>
 
-	<!-- Back to top -->
+	<!-- Back to top BTN -->
 	<div class="btn-back-to-top" id="myBtn">
 		<span class="symbol-btn-back-to-top">
 			<i class="zmdi zmdi-chevron-up"></i>

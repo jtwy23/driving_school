@@ -2,20 +2,20 @@
 
 Hi {{first_name}} {{last_name}}!
 
-You have purchase Some Product from our market. Details are Given Below:
+Your lesson is now active. Your details are below:
 {% for i in order %}
 
-Order Id : {{i.order_id}}
-Product Name : {{i.Lesson}}
-Product Price : £ {{i.Lesson_price}}
-Instructor will Connect You !!
+Order ID: {{i.order_id}}
+Lesson Name: {{i.Lesson}}
+Lesson Price: £ {{i.Lesson_price}}
+An instructor will contact you soon to arrange your lesson.
 
 {% endfor %}
 
 Your Details :
-Address : {{order_cus.address}}
-Postal Code : {{order_cus.zip}}
-Phone Number : {{order_cus.phone}}
-Email Addess : {{order_cus.email}}
+Address: {{order_cus.address}}
+Postcode: {{order_cus.zip}}
+Phone Number: {{order_cus.phone}}
+Email Address: {{order_cus.email}}
 
 {% endautoescape %}
