@@ -12,20 +12,24 @@ def login_func_instructor(request):
         instructor_log_password = request.POST.get('instructor_log_password')
 
         # Check the email that is in database or not.
-        check_filter_instructor = instructor_information.objects.filter(email=instructor_log_email)
+        check_filter_instructor = instructor_information.objects.filter(
+            email=instructor_log_email)
 
         # If the email is valid
         if check_filter_instructor:
             # Get the info of the instructor by email
-            get_instructor = instructor_information.objects.get(email=instructor_log_email)
+            get_instructor = instructor_information.objects.get(
+                email=instructor_log_email)
             instructor_password = get_instructor.password
             # Now matching password
             # If password matched
             if instructor_log_password == instructor_password:
                 # Start login session of instructor
                 request.session['instructor_id'] = get_instructor.id
-                request.session['instructor_first_name'] = get_instructor.first_name
-                request.session['instructor_last_name'] = get_instructor.last_name
+                request.session[
+                    'instructor_first_name'] = get_instructor.first_name
+                request.session[
+                    'instructor_last_name'] = get_instructor.last_name
                 request.session['instructor_email'] = get_instructor.email
                 request.session['instructor_phone'] = get_instructor.phone
                 request.session['instructor_address'] = get_instructor.address
@@ -34,14 +38,19 @@ def login_func_instructor(request):
                 # Else show error.
                 erorr_message_2 = "Your Password Is Wrong, Please Try Again!"
 
-                value_func2 = {'erorr_message_2': erorr_message_2, 'instructor_log_email': instructor_log_email}
+                value_func2 = {
+                    'erorr_message_2': erorr_message_2, 
+                    'instructor_log_email': instructor_log_email}
                 # Error message
-                return render(request, 'login_func_instructor.html', value_func2)
+                return render(
+                    request, 'login_func_instructor.html', value_func2)
         else:
             # else show error message
             erorr_message_2 = "Invalid Credentials, Please Try Again!"
 
-            value_func2 = {'erorr_message_2': erorr_message_2, 'instructor_log_email': instructor_log_email}
+            value_func2 = {
+                'erorr_message_2': erorr_message_2,
+                'instructor_log_email': instructor_log_email}
             # Error message
             return render(request, 'login_func_instructor.html', value_func2)
     else:
@@ -60,7 +69,8 @@ def home_instructor(request):
     get_instructor_by_id = instructor_information.objects.get(id=user_id)
 
     # filter all order by instructor_information
-    filter_order_by_instructor = Order.objects.filter(Instructor=get_instructor_by_id, ordered=True).order_by('-id')
+    filter_order_by_instructor = Order.objects.filter(
+        Instructor=get_instructor_by_id, ordered=True).order_by('-id')
     # print(filter_order_by_instructor)
     context = {'filter_order_by_instructor': filter_order_by_instructor}
     return render(request, 'index_instructor.html', context)
@@ -73,7 +83,8 @@ def my_lessons(request):
     # Get the instructor by id from instructor_information table
     get_instructor_by_id = instructor_information.objects.get(id=user_id)
     # Filter all lessons by products
-    filter_lessons_by_instructor = products.objects.filter(Intructor=get_instructor_by_id)
+    filter_lessons_by_instructor = products.objects.filter(
+        Intructor=get_instructor_by_id)
     context = {'filter_lessons_by_instructor': filter_lessons_by_instructor}
     return render(request, 'my_lessons.html', context)
 
