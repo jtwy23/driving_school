@@ -4,18 +4,18 @@ from .models import contact_us
 # Create your views here.
 
 
-# contact page
+# Contact page
 def contact(request):
-    if request.method=="POST":
-        # get email and message from template
-        email=request.POST.get('email')
-        msg=request.POST.get('msg')
+    if request.method == "POST":
+        # Get email and message from template
+        email = request.POST.get('email')
+        msg = request.POST.get('msg')
         print(email, msg)
 
-        # save contact us message to database
+        # Save contact us message to database
         contactus = contact_us(email=email, message=msg)
         contactus.save()
-        messages.success(request, 'Message Has been sent to admin !!')
+        messages.success(request, 'Thank you for your message. We will get in touch very soon.')
         return redirect('index')
 
     return render(request, 'contact.html')
