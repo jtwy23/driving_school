@@ -93,14 +93,18 @@ def signup_login(request):
         if not erorr_message:
 
             # Create user
-            myuser = User.objects.create_user(email_sign, email_sign, password_sign)
+            myuser = User.objects.create_user(
+                email_sign, email_sign, password_sign)
             myuser.first_name = first_name
             myuser.last_name = last_name
             myuser.is_active = False
             myuser.save()
 
             # Customer more information
-            customer_more_info = customer_more_information(Customer=myuser, Address=address_sign, Postcode=postcode_sign, Phone_number=phone_sign)
+            customer_more_info = customer_more_information(
+                Customer=myuser, Address=address_sign, Postcode=postcode_sign, 
+                Phone_number=phone_sign
+            )
             customer_more_info.save()
 
             # send mail
@@ -134,7 +138,8 @@ def signup_login(request):
             )
             
             # Save all data
-            messages.success(request, 'Check Your Email to Activate Your Account!')
+            messages.success(
+                request, 'Check Your Email to Activate Your Account!')
 
             return redirect('/')
 
@@ -179,7 +184,9 @@ def login_func(request):
         else:
             erorr_message_2 ="Invalid Credentials, Please Try Again!"
 
-            value_func2 = {'erorr_message_2':erorr_message_2, 'log_username':log_username}
+            value_func2 = {
+                'erorr_message_2': erorr_message_2, 'log_username': log_username
+            }
             return render(request, 'signup_func.html', value_func2)
 
 
@@ -228,14 +235,17 @@ def edit_profile(request):
         form2 = change_user_profile(instance=user)
 
         # If user has data in customer_more_information table
-        filter_customer_details = customer_more_information.objects.filter(Customer=user)
+        filter_customer_details = customer_more_information.objects.filter(
+            Customer=user)
 
         if filter_customer_details:
-            get_customer_details = customer_more_information.objects.get(Customer=user)
+            get_customer_details = customer_more_information.objects.get(
+                Customer=user)
             form1 = change_profile(instance=get_customer_details)
 
             if request.method == 'POST':
-                form1 = change_profile(request.POST, instance=get_customer_details)
+                form1 = change_profile(
+                    request.POST, instance=get_customer_details)
                 if form1.is_valid():
                     form1.save()
 
@@ -243,10 +253,11 @@ def edit_profile(request):
                 if form2.is_valid():
                     form2.save()
 
-                messages.success(request, 'Your Profile Is Successfully Updated!')
+                messages.success(
+                    request, 'Your Profile Is Successfully Updated!')
                 return redirect('profile')
 
-            context3={'form1': form1, 'form2': form2}
+            context3 = {'form1': form1, 'form2': form2}
             return render(request, 'edit_profile.html', context3)
         # If user has no data in customer_more_information table
         # User details will save to customer_more_information table
@@ -258,8 +269,9 @@ def edit_profile(request):
 
                 # Customer more information
                 # User details will save to customer_more_information table
-                customer_more_info = customer_more_information(Customer=user, Address=address,
-                                                               Postcode=Postcode, Phone_number=phone_no)
+                customer_more_info = customer_more_information(
+                    Customer=user, Address=address,
+                    Postcode=Postcode, Phone_number=phone_no)
                 customer_more_info.save()
 
                 # Edit user table
@@ -267,7 +279,8 @@ def edit_profile(request):
                 if form2.is_valid():
                     form2.save()
 
-                messages.success(request, 'Your Profile Is Successfully Updated!')
+                messages.success(
+                    request, 'Your Profile Is Successfully Updated!')
                 return redirect('profile')
 
             context3 = {'form2': form2}

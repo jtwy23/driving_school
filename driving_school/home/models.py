@@ -21,6 +21,7 @@ class EmailConfirmed(models.Model):
     class Meta:
         verbose_name_plural = 'User Email-Confirmed'
 
+
 @receiver(post_save, sender=User)
 def create_user_email_confirmation(sender, instance, created, **kwargs):
     if created:
@@ -39,17 +40,26 @@ class Categories(models.Model):
     def __str__(self):
         return self.category_name
 
+
 # Lesson table
 class products(models.Model):
     product_name = models.CharField(max_length=2000)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
-    Intructor = models.ForeignKey(instructor_information, on_delete=models.CASCADE, null=True, blank=True)
+    Intructor = models.ForeignKey(
+        instructor_information,
+        on_delete=models.CASCADE,
+        null=True, blank=True
+    )
     product_price = models.CharField(max_length=2000)
     image = models.ImageField(upload_to='uploads/product_image')
-    image2 = models.ImageField(upload_to='uploads/product_image', null=True, blank=True, default='')
-    image3 = models.ImageField(upload_to='uploads/product_image', null=True, blank=True, default='')
-    image4 = models.ImageField(upload_to='uploads/product_image', null=True, blank=True, default='')
-    image5 = models.ImageField(upload_to='uploads/product_image', null=True, blank=True, default='')
+    image2 = models.ImageField(
+        upload_to='uploads/product_image', null=True, blank=True, default='')
+    image3 = models.ImageField(
+        upload_to='uploads/product_image', null=True, blank=True, default='')
+    image4 = models.ImageField(
+        upload_to='uploads/product_image', null=True, blank=True, default='')
+    image5 = models.ImageField(
+        upload_to='uploads/product_image', null=True, blank=True, default='')
     description = models.TextField()
 
     def __str__(self):

@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    
+ 
 
 
     # local django apps
@@ -144,12 +144,9 @@ STATICFILES_DIRS = [
 ]
 
 
-
 # for image, video upload
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-MEDIA_URL='/media/'
-
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 
 # Default primary key field type
@@ -157,11 +154,12 @@ MEDIA_URL='/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#Email Settings
+
+# Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'drivingschooltester@gmail.com'
 EMAIL_HOST_PASSWORD = config('EMAIL_PASS')
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = '828 Driving School <828DrivingSchool@support>'
+DEFAULT_FROM_EMAIL = 'Driving School <DrivingSchool@support>'

@@ -13,5 +13,5 @@ urlpatterns = [
     path('login', views.login_func, name='login_func'),  # User login
     path('logout_func', views.logout_func, name='logout_func'),  # User logout
     path('product_detail/<int:pk>', views.product_detail, name='product_detail'),  # Product details
-    path('email/confirmation/<str:activation_key>/', views.email_confirm, name='email_activation' ),  # Sending activation email
+    path('email/confirmation/<str:activation_key>/',views.email_confirm, name='email_activation'),  # Sending activation email
 ]
