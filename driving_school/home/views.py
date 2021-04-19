@@ -2,7 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
 from .models import EmailConfirmed, products, Categories, customer_more_information
+from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from .forms import change_profile, change_user_profile
 # Create your views here.
@@ -88,6 +92,38 @@ def signup_login(request):
             # Customer more information
             customer_more_info = customer_more_information(Customer=myuser, Address=address_sign, Postcode=postcode_sign, Phone_number=phone_sign)
             customer_more_info.save()
+
+            # send mail
+            user = EmailConfirmed.objects.get(user=myuser)
+            site = get_current_site(request)
+            email = myuser.email
+            first_name = myuser.first_name
+            last_name = myuser.last_name
+
+            domain1 = site.domain
+            domain=domain1[:-1]
+            print(domain)
+
+            sub_of_email = "Activation Email From Driving School."
+            email_body = render_to_string(
+                'verify_email.html',
+                {
+                    'first_name': first_name,
+                    'last_name': last_name,
+                    'email': email,
+                    'domain': domain,
+                    'activation_key': user.activation_key
+                }
+            )
+
+            send_mail(
+                sub_of_email,  # Subject of message
+                email_body,  # Message
+                '',  # From Email
+                [email],  # To Email
+
+                fail_silently=True
+            )
             
             # Save all data
             messages.success(request, 'Check Your Email to Activate Your Account!')

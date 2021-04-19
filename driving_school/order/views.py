@@ -259,6 +259,32 @@ class PaymentView(View):
 
                 last_order_id = i.id
 
+            
+
+            order_cus = Order.objects.get(id=last_order_id)
+
+            # sending email to customer about the order
+            email_for_buy = render_to_string(
+                'email_to_buy.html',
+                {
+
+                    'first_name': self.request.user.first_name,
+                    'last_name': self.request.user.last_name,
+                    'order': order,
+                    'order_cus': order_cus,
+                }
+            )
+
+            email=self.request.user.email
+            send_mail(
+                'Purchase Order',  # subject
+                email_for_buy,  # massage
+                '',  # from email
+                [email],  # to email
+
+                fail_silently=True,
+            )
+
             messages.success(self.request, 'Payment is Successfull!')
 
         # If there is any error in payment
