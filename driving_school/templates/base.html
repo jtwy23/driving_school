@@ -43,10 +43,10 @@
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
 					<div class="left-top-bar">
-						<h4 class="mt-1" style="color:#4E95F0;">Get 10% Discount for Every Lesson !!</h4>
+						<h4 class="mt-1" style="color:#4E95F0;">Get 10% Discount for Every Lesson!!</h4>
 					</div>
 					<div class="right-top-bar">
-						<h4 class="mt-2" style="color:yellow;">Get 30% Off for order over £100</h4>
+						<h4 class="mt-2" style="color:yellow;">Get 30% Off for orders over £100</h4>
 					</div>
 				</div>
 			</div>
@@ -58,7 +58,7 @@
 					<div id="logo" style="padding:10px 0">
 						<a href="/">
 							<h5 class="ltext-101 cl2 p-t-40 p-b-30 pr-5"
-								style="font-family:courier,arial,helvetica; color:#4E95F0;"><b>828 Driving School</b>
+								style="font-family:courier,arial,helvetica; color:#4E95F0;"><b>Driving School</b>
 							</h5>
 						</a>
 					</div>
@@ -86,12 +86,11 @@
 
 							<li>
 								<div>
-									<a class="btn btn-info" href="#">Hello, {{user.first_name}}</a>
+									<a class="btn btn-info" href="#">Hello {{user.first_name}}</a>
 								</div>
 								<ul class="sub-menu bg-info">
 									<li><a href="{% url 'profile' %}" style="color:white;">My Profile</a></li>
 									<li><a href="{% url 'my_orders' %}" style="color:white;">My Orders</a></li>
-
 									<li><a href="{% url 'logout_func' %}" style="color:yellow;">Logout</a></li>
 								</ul>
 							</li>
@@ -109,9 +108,9 @@
 
 							<li>
 								<div>
-									<a class="btn btn-danger" href="{% url 'login_func_instructor' %}"
-										style="color:white">My
-										Dashboard</a>
+									<a class="btn btn-danger" href="{% url 'login_func_instructor' %}" style="color:white">
+										My Dashboard
+									</a>
 								</div>
 							</li>
 
@@ -122,8 +121,7 @@
 								</div>
 								<ul class="sub-menu bg-info">
 									<li><a href="{% url 'signup_login' %}" style="color:white;">For Pupil</a></li>
-									<li><a href="{% url 'login_func_instructor' %}" style="color:white;">For
-											Instructor</a></li>
+									<li><a href="{% url 'login_func_instructor' %}" style="color:white;">For Instructor</a></li>
 								</ul>
 							</li>
 							{% endif %}
@@ -150,9 +148,9 @@
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
 				<a href="/">
-					<h5 class="ltext-101 cl2 p-t-10 p-b-30"
-						style="font-family:courier,arial,helvetica; color:#4E95F0; font-size:15px;"><b>828 Driving
-							School</b></h5>
+					<h5 class="ltext-101 cl2 p-t-10 p-b-30" style="font-family:courier,arial,helvetica; color:#4E95F0; font-size:15px;">
+						<b>Driving School</b>
+					</h5>
 				</a>
 			</div>
 			<!-- Icon header -->
@@ -180,7 +178,7 @@
 			<ul class="topbar-mobile">
 				<li>
 					<div class="left-top-bar">
-						Free shipping for standard order over £100
+						Get 10% Discount for Every Lesson! OR Get 30% Off for orders over £100!
 					</div>
 				</li>
 			</ul>
@@ -206,7 +204,7 @@
 
 				<li>
 					<div>
-						<a class="btn btn-info" href="#">Hello, {{user.first_name}}</a>
+						<a class="btn btn-info" href="#">Hello {{user.first_name}}</a>
 					</div>
 					<ul class="sub-menu-m bg-info">
 						<li><a href="" style="color:white;">My Profile</a></li>
@@ -224,7 +222,7 @@
 
 				<li>
 					<div>
-						<a class="btn btn-info" href="#">Hello, {{request.session.instructor_first_name}}</a>
+						<a class="btn btn-info" href="#">Hello {{request.session.instructor_first_name}}</a>
 					</div>
 					<ul class="sub-menu-m bg-info">
 						<li><a href="" style="color:white;">My Dashboard</a></li>
@@ -237,8 +235,7 @@
 
 				<li>
 					<div>
-						<a class="btn btn-danger" href="" style="color:white">My
-							Dashboard</a>
+						<a class="btn btn-danger" href="" style="color:white">My Dashboard</a>
 					</div>
 				</li>
 				<li><a href="{% url 'logout_func' %}" style="color:yellow;">Logout</a></li>
@@ -248,8 +245,8 @@
 				<li>
 					<a href="#">Login / Sign Up</a>
 					<ul class="sub-menu-m">
-						<li><a href="">For Pupil</a></li>
-						<li><a href="">For Instructor</a></li>
+						<li><a href="{% url 'signup_login' %}">For Pupil</a></li>
+						<li><a href="{% url 'login_func_instructor' %}">For Instructor</a></li>
 					</ul>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -311,76 +308,11 @@
 			<div class="row">
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						Categories
-					</h4>
-
-					<ul>
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Women
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Men
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Shoes
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Watches
-							</a>
-						</li>
-					</ul>
-				</div>
-
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Help
-					</h4>
-
-					<ul>
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Track Order
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Returns
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Shipping
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								FAQs
-							</a>
-						</li>
-					</ul>
-				</div>
-
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						GET IN TOUCH
+						Social Media
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us
-						on (+1) 96 716 6879
+						Connect with us using one of our social media platforms.
 					</p>
 
 					<div class="p-t-27">
@@ -391,32 +323,13 @@
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i class="fa fa-instagram"></i>
 						</a>
-
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-pinterest-p"></i>
-						</a>
 					</div>
+
+					<div class="col-sm-6 col-lg-3 p-b-50"></div>
+					<div class="col-sm-6 col-lg-3 p-b-50"></div>
 				</div>
 
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
-						Newsletter
-					</h4>
-
-					<form>
-						<div class="wrap-input1 w-full p-b-4">
-							<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email"
-								placeholder="email@example.com">
-							<div class="focus-input1 trans-04"></div>
-						</div>
-
-						<div class="p-t-18">
-							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-								Subscribe
-							</button>
-						</div>
-					</form>
-				</div>
+				
 			</div>
 
 			<div class="p-t-40">
