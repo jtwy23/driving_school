@@ -39,12 +39,22 @@ def product_search(request):
 
     # Search the lesson by icontains
     if search_product:
-        search_result = products.objects.filter(Q(product_name__icontains=search_product) | Q(description__icontains=search_product)).order_by('-id')
+        search_result = products.objects.filter(
+            Q(product_name__icontains=search_product) | 
+            Q(description__icontains=search_product)
+        ).order_by('-id')
 
-        search_result_count = products.objects.filter(Q(product_name__icontains=search_product) | Q(description__icontains=search_product)).count()
+        search_result_count = products.objects.filter(
+            Q(product_name__icontains=search_product) | 
+            Q(description__icontains=search_product)
+        ).count()
 
         print(search_result)
-        context5 = {'search_product':search_product, 'search_result': search_result, 'search_result_count': search_result_count}
+        context5 = {
+            'search_product': search_product,
+            'search_result': search_result,
+            'search_result_count': search_result_count
+        }
         return render(request, 'product.html', context5)
 
 

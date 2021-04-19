@@ -9,8 +9,17 @@ from home.models import products
 # Order table to store all order details
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    Lesson = models.ForeignKey(products, on_delete=models.CASCADE, blank=True, null=True)
-    Instructor = models.ForeignKey(instructor_information, on_delete=models.CASCADE, blank=True, null=True)
+    Lesson = models.ForeignKey(
+        products,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
+    )
+    Instructor = models.ForeignKey(
+        instructor_information,
+        on_delete=models.CASCADE,
+        blank=True, null=True
+    )
     order_id = models.CharField(max_length=1000)
     Lesson_price = models.CharField(max_length=1000)
     first_name = models.CharField(max_length=1000)
@@ -25,14 +34,18 @@ class Order(models.Model):
     order_date = models.CharField(max_length=1000)
 
     def __str__(self):
-        return self.order_id + " - " + self.user.first_name + " " + self.user.last_name
+        return self.order_id + " - " +
+        self.user.first_name + " " +
+        self.user.last_name
 
 
 # Table for all cancelled orders in less than 24 hours
 class cancel_order_for_money_back(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    Cancel_Time = models.DateTimeField(default=datetime.now(), blank=True)
-   
+    Cancel_Time = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
-        return self.user.first_name + " " + self.user.last_name + " - " + self.order.order_id
+        return self.user.first_name + " " +
+        self.user.last_name + " - " +
+        self.order.order_id

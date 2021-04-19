@@ -375,14 +375,7 @@
 	<script src="{% static 'webapp1/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 	<!--===============================================================================================-->
 	<script src="{% static 'webapp1/vendor/select2/select2.min.js' %}"></script>
-	<script>
-		$(".js-select2").each(function () {
-			$(this).select2({
-				minimumResultsForSearch: 20,
-				dropdownParent: $(this).next('.dropDownSelect2')
-			});
-		})
-	</script>
+	<script src="{% static 'webapp1/js/js-select2.js' %}"></script>
 	<!--===============================================================================================-->
 	<script src="{% static 'webapp1/vendor/daterangepicker/moment.min.js' %}"></script>
 	<script src="{% static 'webapp1/vendor/daterangepicker/daterangepicker.js' %}"></script>
@@ -412,41 +405,8 @@
 	<script src="{% static 'webapp1/vendor/isotope/isotope.pkgd.min.js' %}"></script>
 	<!--===============================================================================================-->
 	<script src="{% static 'webapp1/vendor/sweetalert/sweetalert.min.js' %}"></script>
-	<script>
-		$('.js-addwish-b2').on('click', function (e) {
-			e.preventDefault();
-		});
-
-		$('.js-addwish-b2').each(function () {
-			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function () {
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
-			});
-		});
-
-		$('.js-addwish-detail').each(function () {
-			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
-			$(this).on('click', function () {
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-detail');
-				$(this).off('click');
-			});
-		});
-
-		/*---------------------------------------------*/
-
-		$('.js-addcart-detail').each(function () {
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			$(this).on('click', function () {
-				swal(nameProduct, "is added to cart !", "success");
-			});
-		});
-	</script>
+	<script src="{% static 'webapp1/js/js-addwish-b2.js' %}"></script>
+	
 	<!--===============================================================================================-->
 	<script src="{% static 'webapp1/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
 	<script>
