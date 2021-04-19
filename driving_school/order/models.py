@@ -34,9 +34,7 @@ class Order(models.Model):
     order_date = models.CharField(max_length=1000)
 
     def __str__(self):
-        return self.order_id + " - " +
-        self.user.first_name + " " +
-        self.user.last_name
+        return self.order_id + " - " + self.user.first_name + " " + self.user.last_name
 
 
 # Table for all cancelled orders in less than 24 hours
@@ -46,6 +44,4 @@ class cancel_order_for_money_back(models.Model):
     Cancel_Time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user.first_name + " " +
-        self.user.last_name + " - " +
-        self.order.order_id
+        return self.user.first_name + " " + self.user.last_name + " - " + self.order.order_id
