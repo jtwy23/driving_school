@@ -15,7 +15,10 @@ def contact(request):
         # Save contact us message to database
         contactus = contact_us(email=email, message=msg)
         contactus.save()
-        messages.success(request, 'Thank you for your message. We will get in touch very soon.')
+        messages.success(
+            request,
+            'Thank you for your message. We will get in touch very soon.'
+        )
         return redirect('index')
 
     return render(request, 'contact.html')
