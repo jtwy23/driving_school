@@ -2,19 +2,21 @@
 
 {% load static %}
 
-{% block title %}Checkout - 828 Driving School{% endblock %}
+{% block title %}Checkout - Driving School{% endblock %}
 
 {% block body %}
 
 <head>
-	<title>Shoping Cart</title>
+	<!-- Title tag -->
+	<title>Shopping Cart</title>
+	<!-- Meta tags -->
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 
 <body class="animsition">
-	<!-- breadcrumb -->
+	<!-- Breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
 			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
@@ -23,13 +25,12 @@
 			</a>
 
 			<span class="stext-109 cl4">
-				Shoping Cart
+				Shopping Cart
 			</span>
 		</div>
 	</div>
 
-
-	<!-- Shoping Cart -->
+	<!-- Shopping Cart -->
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
@@ -119,7 +120,6 @@
 
 					<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
 						<div class="flex-w flex-m m-r-20 m-tb-5">
-							<!--<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text" name="coupon" placeholder="Coupon Code">-->
 							<div class=""></div>
 						</div>
 
@@ -188,7 +188,7 @@
 		</div>
 	</div>
 
-	<!-- Back to top -->
+	<!-- Back to top BTN -->
 	<div class="btn-back-to-top" id="myBtn">
 		<span class="symbol-btn-back-to-top">
 			<i class="zmdi zmdi-chevron-up"></i>
@@ -244,9 +244,9 @@
 	var totalprice = 0;
 
 	if ($.isEmptyObject(product_cart)) {
-		mystr = `<p class="text-center">Your Cart Is Empty. Add Some Product for checkout!!</p>`
+		mystr = `<p class="text-center">Your cart is empty. Add some lessons for checkout.</p>`
 		mystr = `<tr class="table_row divproduct">
-									<td colspan="5"><h5 class="text-center">Your Cart Is Empty. Add Some Product for checkout!!</h5></td></tr>`
+									<td colspan="5"><h5 class="text-center">Your cart is empty. Add some lessons for checkout.</h5></td></tr>`
 		$('#items').append(mystr);
 
 		delivery = 0;
@@ -359,7 +359,7 @@
 
 
 
-	//update the cart
+	//Update cart
 	function updateCart(product_cart) {
 		var sum = 0;
 		for (var item in product_cart) {
