@@ -100,9 +100,7 @@ def signup_login(request):
             first_name = myuser.first_name
             last_name = myuser.last_name
 
-            domain1 = site.domain
-            domain=domain1[:-1]
-            print(domain)
+            domain="8000-apricot-stingray-k3ued494.ws-eu03.gitpod.io"
 
             sub_of_email = "Activation Email From Driving School."
             email_body = render_to_string(

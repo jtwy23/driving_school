@@ -176,6 +176,7 @@ def checkout(request):
                     messages.info(request, 'Please give us some information.')
                     return redirect('edit_profile')
         else:
+            messages.success(request, 'You need to login / signup before making a purchase.')
             return redirect('signup_login')
 
 
