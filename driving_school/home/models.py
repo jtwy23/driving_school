@@ -19,7 +19,7 @@ class EmailConfirmed(models.Model):
         return self.user.email
 
     class Meta:
-        verbose_name_plural = 'User Email-Confirmed'
+        verbose_name_plural = 'Email-Confirmed Users'
 
 
 @receiver(post_save, sender=User)
@@ -35,6 +35,9 @@ def create_user_email_confirmation(sender, instance, created, **kwargs):
 
 # Category lesson table
 class Categories(models.Model):
+    class Meta:
+        verbose_name_plural = 'Categories'
+
     category_name = models.CharField(max_length=500)
 
     def __str__(self):
@@ -43,6 +46,9 @@ class Categories(models.Model):
 
 # Lesson table
 class products(models.Model):
+    class Meta:
+        verbose_name_plural = 'Products'
+        
     product_name = models.CharField(max_length=2000)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
     Intructor = models.ForeignKey(
@@ -68,6 +74,9 @@ class products(models.Model):
 
 # Customer more details
 class customer_more_information(models.Model):
+    class Meta:
+        verbose_name_plural = 'More Customer Information'
+
     Customer = models.ForeignKey(User, on_delete=models.CASCADE)
     Phone_number = models.CharField(max_length=200)
     Postcode = models.CharField(max_length=200, default='')

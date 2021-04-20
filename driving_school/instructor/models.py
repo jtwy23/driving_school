@@ -5,6 +5,10 @@ from django.db import models
 
 # Admin add an instructor
 class instructor_information(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Instructor Information'
+
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     email = models.CharField(max_length=200)

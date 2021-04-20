@@ -38,6 +38,9 @@ class Order(models.Model):
 
 # Table for all cancelled orders in less than 24 hours
 class cancel_order_for_money_back(models.Model):
+    class Meta:
+        verbose_name_plural = 'Refund To Cancelled Orders'
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     Cancel_Time = models.DateTimeField(auto_now_add=True)

@@ -31,7 +31,7 @@ def my_orders(request):
 def my_order_details(request, pk):
     # Get the details of the order
     get_the_order = Order.objects.get(id=pk)
-    context = {'get_the_order':get_the_order}
+    context = {'get_the_order': get_the_order}
     return render(request, 'my_order_details.html', context)
 
 

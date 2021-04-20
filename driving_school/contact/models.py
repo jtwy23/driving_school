@@ -4,6 +4,8 @@ from django.db import models
 
 
 class contact_us(models.Model):
+    class Meta:
+        verbose_name_plural = 'Contact Us Messages'
     email = models.CharField(max_length=200)
     message = models.TextField()
 
