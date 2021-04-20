@@ -14,10 +14,8 @@
 	<!-- End of Meta Tags -->
 	<!-- Start of Link Tags -->
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp1/vendor/bootstrap/css/bootstrap.min.css' %}">
-	<link rel="stylesheet" type="text/css"
-		href="{% static 'webapp1/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
-	<link rel="stylesheet" type="text/css"
-		href="{% static 'webapp1/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'webapp1/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'webapp1/fonts/iconic/css/material-design-iconic-font.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp1/fonts/linearicons-v1.0.0/icon-font.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp1/vendor/animate/animate.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp1/vendor/css-hamburgers/hamburgers.min.css' %}">
@@ -101,7 +99,7 @@
 										{{request.session.instructor_first_name}}</a>
 								</div>
 								<ul class="sub-menu bg-info">
-									<li><a href="" style="color:white;">My Dashboard</a></li>
+									<li><a href="{% url 'home_instructor' %}" style="color:white;">My Dashboard</a></li>
 									<li><a href="{% url 'logout_func' %}" style="color:yellow;">Logout</a></li>
 								</ul>
 							</li>
@@ -228,7 +226,7 @@
 						<a class="btn btn-info" href="#">Hello {{request.session.instructor_first_name}}</a>
 					</div>
 					<ul class="sub-menu-m bg-info">
-						<li><a href="" style="color:white;">My Dashboard</a></li>
+						<li><a href="" style="color:white;"></a></li>
 						<li><a href="{% url 'logout_func' %}" style="color:yellow;">Logout</a></li>
 					</ul>
 					<span class="arrow-main-menu-m">
@@ -238,7 +236,7 @@
 
 				<li>
 					<div>
-						<a class="btn btn-danger" href="" style="color:white">My Dashboard</a>
+						<a class="btn btn-danger" href="{% url 'home_instructor' %}" style="color:white">My Dashboard</a>
 					</div>
 				</li>
 				<li><a href="{% url 'logout_func' %}" style="color:yellow;">Logout</a></li>
@@ -323,7 +321,7 @@
 						<a href="http://www.facebook.com" target="_blank" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i class="fa fa-facebook"></i>
 						</a>
-						
+
 						<a href="https://www.instagram.com/" target="_blank" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 							<i class="fa fa-instagram"></i>
 						</a>
@@ -364,7 +362,7 @@
 				</div>
 
 				<p class="stext-107 cl6 txt-center">
-					Copyright Jerry Yau 2021
+					Copyright 2021
 				</p>
 			</div>
 		</div>
@@ -461,9 +459,15 @@
 			updateCart(product_cart);
 		}
 	</script>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+	</script>
 
 	{% block js %}{% endblock %}
 
