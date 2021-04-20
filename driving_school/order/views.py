@@ -52,7 +52,8 @@ def customer_canceled_order(request):
     date_time_str = order_time
 
     # Cancellation time period
-    date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
+    date_time_obj = datetime.datetime.strptime(
+        date_time_str, '%Y-%m-%d %H:%M:%S.%f')
     print(date_time_obj.date())
 
     differnt_time = now_time - date_time_obj
@@ -66,19 +67,26 @@ def customer_canceled_order(request):
 
     # If less than 1 day that means less than 24 hours
     if differnt_time_days < 1:
-        get_order.customer_cancel_order=True
+        get_order.customer_cancel_order = True
         get_order.save()
-        messages.success(request, "You will receive a refund in 3 working days as you have cancelled your order within the 24 hour period.")
+        messages.success(
+            request,
+            "You will receive a refund in 3 working days as you have cancelled your order within the 24 hour period."
+        )
 
         # If less than 1 that means less than 24 hours save a new table for admin to pay back the customer
-        money_back_admin = cancel_order_for_money_back(user=request.user, order=get_order)
+        money_back_admin = cancel_order_for_money_back(
+            user=request.user, order=get_order)
         money_back_admin.save()
 
         return redirect('my_order_details', get_order.id)
     else:
         get_order.customer_cancel_order = True
         get_order.save()
-        messages.success(request, "You are cancelling your lesson and losing your fee because you did not cancel within 24 hours of buying your lesson.")
+        messages.success(
+            request,
+            "You are cancelling your lesson and losing your fee because you did not cancel within 24 hours of buying your lesson."
+        )
         return redirect('my_order_details', get_order.id)
 
 
@@ -140,15 +148,18 @@ def checkout(request):
                 uniqe_confirm = Order.objects.filter(order_id=random_num)
 
                 while uniqe_confirm:
-                    random_num = random.randint(234567890980000, 992345678900000)
+                    random_num = random.randint(
+                        234567890980000, 992345678900000)
                     if not Order.objects.filter(order_id=random_num):
                         break
 
                 user = request.user
                 # Save order
-                post_order = Order(user=user, Lesson=get_lesson, Instructor=instructor, order_id=random_num, Lesson_price=single_price,
-                                   first_name=first_name, last_name=last_name, email=email, phone=phone,
-                                   address=address, zip=zip, order_date=datetime.datetime.now())
+                post_order = Order(
+                    user=user, Lesson=get_lesson, Instructor=instructor,
+                    order_id=random_num, Lesson_price=single_price,
+                    first_name=first_name, last_name=last_name, email=email,
+                    phone=phone, address=address, zip=zip, order_date=datetime.datetime.now())
                 post_order.save()
             else:
                 print('no')
@@ -168,16 +179,21 @@ def checkout(request):
                 return redirect('payment')
             else:
                 # Get customer details
-                filter_user = customer_more_information.objects.filter(Customer=user)
+                filter_user = customer_more_information.objects.filter(
+                    Customer=user)
                 if filter_user:
-                    get_user = customer_more_information.objects.get(Customer=user)
-                    context4 = {'get_user':get_user}
+                    get_user = customer_more_information.objects.get(
+                        Customer=user)
+                    context4 = {'get_user': get_user}
                     return render(request, 'checkout.html', context4)
                 else:
                     messages.info(request, 'Please give us some information.')
                     return redirect('edit_profile')
         else:
-            messages.success(request, 'You need to login / signup before making a purchase.')
+            messages.success(
+                request,
+                'You need to login / signup before making a purchase.'
+            )
             return redirect('signup_login')
 
 
@@ -189,7 +205,7 @@ class PaymentView(View):
         order = Order.objects.filter(user=user, ordered=False)
         print(order)
 
-        sum_of_bill=0
+        sum_of_bill = 0
 
         # Order price
         for i in order:
@@ -261,8 +277,6 @@ class PaymentView(View):
 
                 last_order_id = i.id
 
-            
-
             order_cus = Order.objects.get(id=last_order_id)
 
             # sending email to customer about the order
@@ -277,7 +291,7 @@ class PaymentView(View):
                 }
             )
 
-            email=self.request.user.email
+            email = self.request.user.email
             send_mail(
                 'Purchase Order',  # subject
                 email_for_buy,  # massage
@@ -311,7 +325,8 @@ class PaymentView(View):
             messages.info(self.request, "There was an error please try again!")
             return redirect('index')
         except Exception as e:
-            messages.info(self.request, "A serious error occured we were notified!")
+            messages.info(
+                self.request, "A serious error occured we were notified!")
             return redirect('index')
 
         return redirect('index')

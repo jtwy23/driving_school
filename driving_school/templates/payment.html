@@ -178,34 +178,8 @@
 		</span>
 	</div>
 
-<!--===============================================================================================-->
-
-	<script>
-		$(".js-select2").each(function(){
-			$(this).select2({
-				minimumResultsForSearch: 20,
-				dropdownParent: $(this).next('.dropDownSelect2')
-			});
-		})
-	</script>
-<!--===============================================================================================-->
-
-	<script>
-		$('.js-pscroll').each(function(){
-			$(this).css('position','relative');
-			$(this).css('overflow','hidden');
-			var ps = new PerfectScrollbar(this, {
-				wheelSpeed: 1,
-				scrollingThreshold: 1000,
-				wheelPropagation: false,
-			});
-
-			$(window).on('resize', function(){
-				ps.update();
-			})
-		});
-	</script>
-<!--===============================================================================================-->
+<script src="{% static 'webapp1/js/js-select2.js' %}"></script>
+<script src="{% static 'webapp1/js/pscroll.js' %}"></script>
 
 </body>
 
@@ -213,19 +187,9 @@
 
 {% block js %}
 
-
-<!--<script>-->
-<!--{% if messages %}-->
-<!--alert('You have an order still to pay! To order again please pay the current order.')-->
-
-<!--{% endif %}-->
-
-<!--</script>-->
-
+<!-- Cart -->
 <script>
-	// console.log('working');
-
-
+// console.log('working');
 var all_prod=[];
 var all_prod_price=[];
 var all_prod_qty=[];
@@ -331,7 +295,7 @@ else{
 
 
 {% if Thank %}
-alert('Thanks For ordering. Your Order Id is {{order_id}}. Check Your Email.')
+alert('Thank you for ordering. Your order ID is {{order_id}}. Check your email.')
 localStorage.clear();
 document.location='/'
 {% endif %}
@@ -350,13 +314,9 @@ function updateCart(product_cart){
 	document.location='cart';
 	// updatePopover(product_cart);
 }
-
-
-
-
 </script>
 
-<!-- stripe payments -->
+<!-- Stripe payments -->
 <script>
 	var stripe = Stripe("pk_test_51IMFIgGHrfeW2r6wZEnHvstrlnxyUmAevvq7uxNoJcUxDyU723HHasIY4ssEFnIzq3P3MNwh8cfLezzjRXk7E1QD00D2L1g8eZ");
 
@@ -416,6 +376,5 @@ function updateCart(product_cart){
     form.submit();
 	}
 </script>
-<!-- stripe payments -->
 
 {% endblock %}
