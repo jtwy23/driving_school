@@ -13,7 +13,7 @@
 
     <body>
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
             <a class="navbar-brand" href="{% url 'index' %}">Driving School</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,12 +21,12 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <!-- <li class="nav-item active">
                         <a class="nav-link" href="{% url 'home_instructor' %}">My Dashboard</a>
-                    </li>
-                    <li class="nav-item active">
+                    </li> -->
+                    <!-- <li class="nav-item active">
                         <a class="nav-link" href="{% url 'my_lessons' %}">My Lessons</a>
-                    </li>
+                    </li> -->
                 </ul>
 
                 <ul class="navbar-nav my-2 my-lg-0 mr-5">
@@ -56,9 +56,9 @@
                                     <td><a class="btn btn-secondary" href="{% url 'home_instructor' %}"><i class="la la-dashboard"></i> <span> My Dashboard</span></a></td>
                                 </tr>
 
-                                <tr>
+                                <!-- <tr>
                                     <td><a class="btn btn-secondary" href="{% url 'my_lessons' %}"><i class="la la-dashboard"></i> <span> My Lessons</span></a></td>
-                                </tr>
+                                </tr> -->
 
                                 <tr>
                                     <td><a class="btn btn-secondary" href="{% url 'instructor_profile' %}"><i class="la la-dashboard"></i> <span> My Profile</span></a></td>
