@@ -1,0 +1,1 @@
+web: gunicorn --pythonpath driving_school driving_school.wsgi:application

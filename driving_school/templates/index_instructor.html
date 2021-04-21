@@ -6,12 +6,10 @@ Dashboard{% endblock %}
 {% block body %}
 <ul class="list-group container">
 	<li class="list-group-item">
-		<table class="table table-striped">
+		<table class="table container table-striped">
 			<thead>
 				<tr>
 					<th scope="col">Order ID</th>
-					<th scope="col">Customer Name</th>
-					<th scope="col">Date</th>
 					<th scope="col">Status</th>
 				</tr>
 			</thead>
@@ -20,8 +18,6 @@ Dashboard{% endblock %}
 				{% for i in filter_order_by_instructor %}
 				<tr>
 					<th scope="row"><a href="{% url 'order_details' i.id %}">{{i.order_id}}</a></th>
-					<td>{{i.user.first_name}} {{i.user.last_name}}</td>
-					<td>{{i.order_date}}</td>
 					<td>
 						{% if i.customer_cancel_order %}
 						<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"

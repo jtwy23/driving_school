@@ -13,6 +13,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- End of Meta Tags -->
 	<!-- Start of Link Tags -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp1/vendor/bootstrap/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp1/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp1/fonts/iconic/css/material-design-iconic-font.min.css' %}">
@@ -27,8 +29,6 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp1/vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp1/css/util.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp1/css/main.css' %}">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<!-- End of Link Tags -->
 </head>
 
@@ -105,12 +105,10 @@
 							</li>
 
 							<li>
-								<div>
-									<a class="btn btn-danger" href="{% url 'login_func_instructor' %}"
+									<a href="{% url 'login_func_instructor' %}"
 										style="color:white">
 										My Dashboard
 									</a>
-								</div>
 							</li>
 
 							{% else %}
@@ -203,10 +201,9 @@
 
 				{% if user.is_authenticated %}
 
-				<li>
-					<div>
-						<a class="btn btn-info" href="#">Hello {{user.first_name}}</a>
-					</div>
+				<li>					
+						<a href="#">Hello {{user.first_name}}</a>
+					
 					<ul class="sub-menu-m bg-info">
 						<li><a href="" style="color:white;">My Profile</a></li>
 						<li><a href="{% url 'my_orders' %}" style="color:white;">My Orders</a></li>
@@ -222,9 +219,7 @@
 				{% elif request.session.instructor_id %}
 
 				<li>
-					<div>
-						<a class="btn btn-info" href="#">Hello {{request.session.instructor_first_name}}</a>
-					</div>
+					<a href="#">Hello {{request.session.instructor_first_name}}</a>
 					<ul class="sub-menu-m bg-info">
 						<li><a href="" style="color:white;"></a></li>
 						<li><a href="{% url 'logout_func' %}" style="color:yellow;">Logout</a></li>
