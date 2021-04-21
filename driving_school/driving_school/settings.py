@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
@@ -62,7 +62,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'driving_school.urls'
 
-# crispy forms for make form more beautiful
+# Crispy forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
@@ -130,7 +130,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
 
 
 # for static files loadins

@@ -48,7 +48,7 @@ class Categories(models.Model):
 class products(models.Model):
     class Meta:
         verbose_name_plural = 'Products'
-        
+
     product_name = models.CharField(max_length=2000)
     category = models.ForeignKey(Categories, on_delete=models.CASCADE)
     Intructor = models.ForeignKey(
