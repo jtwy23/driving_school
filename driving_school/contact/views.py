@@ -21,11 +21,11 @@ def contact(request):
             # Save contact us message to database
             contactus = contact_us(email=email, message=msg)
             contactus.save()
-            message = 'Thank you for your message. We will get in touch very soon.'        
+            message = 'Thank you for your message. We will get in touch very soon.'
 
         messages.success(
             request,
-            message 
+            message
         )
 
     return render(request, 'contact.html')
