@@ -20,7 +20,7 @@
 
 				<tr>
 					<th scope="row">
-						<a href="{% url 'product_detail' i.id %}"><img class="how-pos4 pointer-none" src="/media/{{i.image}}" alt="ICON" height="40" width="40">
+						<a href="{% url 'product_detail' i.id %}"><img class="how-pos4 pointer-none" src="{{ MEDIA_URL }}{{i.image}}" alt="ICON" height="40" width="40">
 							{{i.product_name}}
 						</a>
 					</th>

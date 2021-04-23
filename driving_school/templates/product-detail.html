@@ -33,23 +33,23 @@
 							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 							<div class="slick3 gallery-lb">
-								<div class="item-slick3" data-thumb="/media/{{get_product.image}}">
+								<div class="item-slick3" data-thumb="{{ MEDIA_URL }}{{get_product.image}}">
 									<div class="wrap-pic-w pos-relative">
-										<img src="/media/{{get_product.image}}" alt="IMG-PRODUCT" height="350">
+										<img src="{{ MEDIA_URL }}{{get_product.image}}" alt="IMG-PRODUCT" height="350">
 
 										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-											href="/media/{{get_product.image}}">
+											href="{{ MEDIA_URL }}{{get_product.image}}">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
 								</div>
 
 								{% if get_product.image2 %}
-								<div class="item-slick3" data-thumb="/media/{{get_product.image2}}">
+								<div class="item-slick3" data-thumb="{{ MEDIA_URL }}{{get_product.image2}}">
 									<div class="wrap-pic-w pos-relative">
-										<img src="/media/{{get_product.image2}}" alt="IMG-PRODUCT" height="350">
+										<img src="{{ MEDIA_URL }}{{get_product.image2}}" alt="IMG-PRODUCT" height="350">
 										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-											href="/media/{{get_product.image2}}">
+											href="{{ MEDIA_URL }}{{get_product.image2}}">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
@@ -57,11 +57,11 @@
 								{% endif %}
 
 								{% if get_product.image3 %}
-								<div class="item-slick3" data-thumb="/media/{{get_product.image3}}">
+								<div class="item-slick3" data-thumb="{{ MEDIA_URL }}{{get_product.image3}}">
 									<div class="wrap-pic-w pos-relative">
-										<img src="/media/{{get_product.image3}}" alt="IMG-PRODUCT" height="350">
+										<img src="{{ MEDIA_URL }}{{get_product.image3}}" alt="IMG-PRODUCT" height="350">
 										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-											href="/media/{{get_product.image3}}">
+											href="{{ MEDIA_URL }}{{get_product.image3}}">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
@@ -69,11 +69,11 @@
 								{% endif %}
 
 								{% if get_product.image4 %}
-								<div class="item-slick3" data-thumb="/media/{{get_product.image4}}">
+								<div class="item-slick3" data-thumb="{{ MEDIA_URL }}{{get_product.image4}}">
 									<div class="wrap-pic-w pos-relative">
-										<img src="/media/{{get_product.image4}}" alt="IMG-PRODUCT" height="350">
+										<img src="{{ MEDIA_URL }}{{get_product.image4}}" alt="IMG-PRODUCT" height="350">
 										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-											href="/media/{{get_product.image4}}">
+											href="{{ MEDIA_URL }}{{get_product.image4}}">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
@@ -81,11 +81,11 @@
 								{% endif %}
 
 								{% if get_product.image5 %}
-								<div class="item-slick3" data-thumb="/media/{{get_product.image5}}" height="350">
+								<div class="item-slick3" data-thumb="{{ MEDIA_URL }}{{get_product.image5}}" height="350">
 									<div class="wrap-pic-w pos-relative">
-										<img src="/media/{{get_product.image5}}" alt="IMG-PRODUCT">
+										<img src="{{ MEDIA_URL }}{{get_product.image5}}" alt="IMG-PRODUCT">
 										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-											href="/media/{{get_product.image5}}">
+											href="{{ MEDIA_URL }}{{get_product.image5}}">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
@@ -162,7 +162,7 @@
 						<!-- Block2 -->
 						<div class="block2">
 							<div class="block2-pic hov-img0">
-								<img src="/media/{{i.image}}" alt="IMG-PRODUCT" height="300">
+								<img src="{{ MEDIA_URL }}{{i.image}}" alt="IMG-PRODUCT" height="300">
 
 								<a href="{% url 'product_detail' i.id %}"
 									class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
@@ -204,10 +204,10 @@
 	<script>
 		console.log('ok')
 
-		picture_product = '/media/{{get_product.image}}';
+		picture_product = '{{ MEDIA_URL }}{{get_product.image}}';
 		console.log(picture_product)
 
-		// if the add to card button is clicked, add/increament the item
+		// if the add to cart button is clicked, add/increament the item
 
 		$('.product_cart').click({
 			abc: "picture_product"

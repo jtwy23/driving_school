@@ -197,7 +197,7 @@ if ($.isEmptyObject(product_cart)){
 							<ul class="header-cart-wrapitem w-full">
 								<li class="header-cart-item flex-w flex-t m-b-12">
 									<div class="header-cart-item-img">
-										<img src="/media/{{i.Lesson.image}}" alt="IMG">
+										<img src="{{ MEDIA_URL }}{{i.Lesson.image}}" alt="IMG">
 									</div>
 
 									<div class="header-cart-item-txt p-t-8">
@@ -251,7 +251,7 @@ else{
 							<ul class="header-cart-wrapitem w-full">
 								<li class="header-cart-item flex-w flex-t m-b-12">
 									<div class="header-cart-item-img">
-										<img src="/media/{{i.Lesson.image}}" alt="IMG">
+										<img src="{{ MEDIA_URL }}{{i.Lesson.image}}" alt="IMG">
 									</div>
 
 									<div class="header-cart-item-txt p-t-8">
