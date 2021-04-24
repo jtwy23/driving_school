@@ -9,4 +9,5 @@ urlpatterns = [
     path('instructor_profile', views.instructor_profile, name='instructor_profile'),  # Instructor profile
     path('order_details/<int:pk>', views.order_details, name='order_details'),  # Instructor order detail
     path('cancel_order', views.make_cancel_order, name='make_cancel_order'),  # Instructor cancel
+    path('make_complete_order', views.make_complete_order, name='make_complete_order')#complete the order
 ]

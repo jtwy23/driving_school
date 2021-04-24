@@ -118,3 +118,14 @@ def make_cancel_order(request):
     get_order.instructor_cancel_order = True
     get_order.save()
     return redirect('order_details', get_order.id)
+
+
+def make_complete_order(request):
+    # Get order ID
+    order_id = request.POST.get('order_id')
+    # Get order details
+    get_order = Order.objects.get(id=order_id)
+    # Make instructor_cancel_order boolean field True and save
+    get_order.Completed_order = True
+    get_order.save()
+    return redirect('order_details', get_order.id)
