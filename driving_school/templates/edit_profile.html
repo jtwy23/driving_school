@@ -34,7 +34,7 @@
 			<hr>
 			<h3 style="text-align: center">Profile Settings</h3>
 			<hr>
-			<img src="static/webapp1/images/icons/user.png" class="rounded profile-pic" alt="user">
+			<img src="{% static 'webapp1/images/icons/user.png' class="rounded profile-pic" alt="user">
 			<h5 class="container text-center"><b>{{request.user.first_name}} {{request.user.last_name}} </b></h5>
 		</div>
 	</div>
