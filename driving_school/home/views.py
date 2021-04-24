@@ -40,12 +40,12 @@ def product_search(request):
     # Search the lesson by icontains
     if search_product:
         search_result = products.objects.filter(
-            Q(product_name__icontains=search_product) | 
+            Q(product_name__icontains=search_product) |
             Q(description__icontains=search_product)
         ).order_by('-id')
 
         search_result_count = products.objects.filter(
-            Q(product_name__icontains=search_product) | 
+            Q(product_name__icontains=search_product) |
             Q(description__icontains=search_product)
         ).count()
 
@@ -138,7 +138,7 @@ def signup_login(request):
 
                 fail_silently=True
             )
-            
+
             # Save all data
             messages.success(
                 request, 'Check Your Email to Activate Your Account!')
@@ -148,7 +148,7 @@ def signup_login(request):
         else:
 
             value_dic = {'first_name': first_name, 'last_name': last_name, 'email_sign': email_sign,
-                         'address_sign':address_sign, 'postcode_sign':postcode_sign, 'phone_sign':phone_sign, 'erorr_message': erorr_message}
+                         'address_sign': address_sign, 'postcode_sign':postcode_sign, 'phone_sign':phone_sign, 'erorr_message': erorr_message}
             return render(request, 'signup_func.html', value_dic)
     return render(request, 'signup_func.html')
 
