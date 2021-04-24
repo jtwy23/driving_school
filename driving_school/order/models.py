@@ -30,6 +30,7 @@ class Order(models.Model):
     ordered = models.BooleanField(default=False)
     instructor_cancel_order = models.BooleanField(default=False)
     customer_cancel_order = models.BooleanField(default=False)
+    Completed_order = models.BooleanField(default=False)
     order_date = models.CharField(max_length=1000)
 
     def __str__(self):

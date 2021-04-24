@@ -19,7 +19,11 @@ Dashboard{% endblock %}
 				<tr>
 					<th scope="row"><a href="{% url 'order_details' i.id %}">{{i.order_id}}</a></th>
 					<td>
-						{% if i.customer_cancel_order %}
+						{% if i.Completed_order %}
+						<button type="button" class="btn btn-success" disabled>
+							Completed
+						</button>
+						{% elif i.customer_cancel_order %}
 						<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"
 							disabled>
 							Customer Cancelled

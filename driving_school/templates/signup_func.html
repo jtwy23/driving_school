@@ -15,7 +15,7 @@
 
 <div class="container">
 	<div class="alert alert-success alert-dismissible fade show" role="alert">
-		<h5 class="text-center"> {{message}}</h5>		
+		<h5 class="text-center"> {{message}}</h5>
 	</div>
 </div>
 
@@ -28,7 +28,7 @@
 		<div class="container">
 			<div class="flex-w flex-tr">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-					
+
 					<form method="POST" action="{% url 'login_func' %}">{% csrf_token %}
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							Customer Login
@@ -41,15 +41,19 @@
 
 						<div class="bor8 m-b-20 how-pos4-parent">
 							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="email" name="log_username"
-								value="{{log_username}}" placeholder="Your Email Address">
+								value="{{log_username}}" placeholder="Your Email Address" required>
 							<img class="how-pos4 pointer-none" src="{% static 'webapp1/images/icons/icon-email.png' %}"
 								alt="ICON">
 						</div>
 
 						<div class="bor8 m-b-20 how-pos4-parent">
 							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="password" name="log_password"
-								placeholder="Password">
+								placeholder="Password" required>
 						</div>
+						<div class="m-b-20 how-pos4-parent">
+							<p><a href="{% url 'password_reset' %}">Forgotten your password?</a></p>
+						</div>
+
 
 						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
 							Submit
@@ -72,35 +76,35 @@
 
 						<div class="bor8 m-b-20 how-pos4-parent">
 							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="first_name"
-								value="{{first_name}}" placeholder="First Name">
+								value="{{first_name}}" placeholder="First Name" required>
 							<img class="how-pos4 pointer-none" src="{% static 'webapp1/images/icons/user.png' %}"
 								alt="ICON" height="20" width="30">
 						</div>
 
 						<div class="bor8 m-b-20 how-pos4-parent">
 							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="last_name"
-								value="{{last_name}}" placeholder="Last Name">
+								value="{{last_name}}" placeholder="Last Name" required>
 							<img class="how-pos4 pointer-none" src="{% static 'webapp1/images/icons/user.png' %}"
 								alt="ICON" height="20" width="30">
 						</div>
 
 						<div class="bor8 m-b-20 how-pos4-parent">
 							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="email" name="email_sign"
-								value="{{email_sign}}" placeholder="Your Email Address">
+								value="{{email_sign}}" placeholder="Your Email Address" required>
 							<img class="how-pos4 pointer-none" src="{% static 'webapp1/images/icons/icon-email.png' %}"
 								alt="ICON">
 						</div>
 
 						<div class="bor8 m-b-20 how-pos4-parent">
 							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="address_sign"
-								value="{{address_sign}}" placeholder="Your Address">
+								value="{{address_sign}}" placeholder="Your Address" required>
 							<img class="how-pos4 pointer-none" src="{% static 'webapp1/images/icons/address.png' %}"
 								alt="ICON" height="30" width="30">
 						</div>
 
 						<div class="bor8 m-b-20 how-pos4-parent">
 							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="postcode_sign"
-								value="{{postcode_sign}}" placeholder="Postcode">
+								value="{{postcode_sign}}" placeholder="Postcode" required>
 							<img class="how-pos4 pointer-none" src="{% static 'webapp1/images/icons/address.png' %}"
 								alt="ICON" height="30" width="30">
 						</div>
@@ -108,21 +112,21 @@
 
 						<div class="bor8 m-b-20 how-pos4-parent">
 							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="phone_sign"
-								value="{{phone_sign}}" placeholder="Your Phone">
+								value="{{phone_sign}}" placeholder="Your Phone" required>
 							<img class="how-pos4 pointer-none" src="{% static 'webapp1/images/icons/phonelogo.png' %}"
 								alt="ICON" height="25" width="25">
 						</div>
 
 						<div class="bor8 m-b-20 how-pos4-parent">
 							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="password"
-								name="password_sign" placeholder="Password">
+								name="password_sign" placeholder="Password" required>
 
 						</div>
 
 
 						<div class="bor8 m-b-20 how-pos4-parent">
 							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="password"
-								name="password_sign_re" placeholder="Re-Type Password">
+								name="password_sign_re" placeholder="Re-Type Password" required>
 
 						</div>
 

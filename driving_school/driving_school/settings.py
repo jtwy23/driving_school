@@ -27,6 +27,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
 
+# 'DEVELOPMENT' in os.environ
+
 ALLOWED_HOSTS = ['driving-school-v1.herokuapp.com', 'localhost']
 
 
@@ -49,7 +51,7 @@ INSTALLED_APPS = [
 
     # other
     'crispy_forms',
-    'storages',
+    # 'storages',
 ]
 
 MIDDLEWARE = [
