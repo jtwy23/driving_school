@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import EmailConfirmed, Categories, products, customer_more_information
+from .models import EmailConfirmed, Categories, products, customer_more_information, reviews
 
 # Register your models here.
 
@@ -19,3 +19,4 @@ admin.site.register(EmailConfirmed, EmailConfirmedAdmin)
 admin.site.register(Categories)
 admin.site.register(products)
 admin.site.register(customer_more_information)
+admin.site.register(reviews)

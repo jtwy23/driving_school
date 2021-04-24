@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
-from .models import EmailConfirmed, products, Categories, customer_more_information
+from .models import EmailConfirmed, products, Categories, customer_more_information, reviews
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from .forms import change_profile, change_user_profile
@@ -114,7 +114,7 @@ def signup_login(request):
             first_name = myuser.first_name
             last_name = myuser.last_name
 
-            domain="driving-school-v1.herokuapp.com/"
+            domain="driving-school-v1.herokuapp.com"
 
             # 8000-apricot-stingray-k3ued494.ws-eu03.gitpod.io
 
@@ -207,7 +207,28 @@ def product_detail(request, pk):
     # Get all products by category
     all_pro_cat = products.objects.filter(category=cat_pro)
 
-    context2 = {'get_product': get_product, 'all_pro_cat': all_pro_cat}
+    filter_product_reviews = reviews.objects.filter(product=get_product).order_by('-id')
+    filter_product_reviews_qty = reviews.objects.filter(product=get_product).count()
+    #print(filter_product_reviews_qty)
+
+    # making average rating
+    total_ratings=0
+    for i in filter_product_reviews:
+        total_ratings = total_ratings + int(i.ratings)
+        #print(total_ratings)
+
+    if filter_product_reviews_qty==0:
+        average_rating = 0
+    else:
+        average_rating = total_ratings/filter_product_reviews_qty
+        #print(average_rating)
+
+    average_rating = "%0.1f" % average_rating
+
+    # print('this is all')
+    # print(average_rating, filter_product_reviews_qty)
+
+    context2 = {'get_product': get_product, 'all_pro_cat': all_pro_cat, 'filter_product_reviews':filter_product_reviews, 'filter_product_reviews_qty':filter_product_reviews_qty, 'average_rating':average_rating}
     return render(request, 'product-detail.html', context2)
 
 
@@ -250,7 +271,7 @@ def edit_profile(request):
                     request.POST, instance=get_customer_details)
                 if form1.is_valid():
                     form1.save()
-
+                    
                 form2 = change_user_profile(request.POST, instance=user)
                 if form2.is_valid():
                     form2.save()
@@ -289,3 +310,29 @@ def edit_profile(request):
             return render(request, 'edit_profile.html', context3)
     else:
         return redirect('index')
+
+
+
+
+def customer_review(request):
+    rating_number=request.POST.get('rating_number')
+    review_text=request.POST.get('review_text')
+
+    product_id=request.POST.get('product_id')
+    get_details_product = products.objects.get(id=product_id)
+
+    user = request.user
+
+    filter_review = reviews.objects.filter(customer=user, product=get_details_product)
+
+    if filter_review:
+        messages.success(request, 'You Can not Give Feedback More Than Once.')
+        return redirect('product_detail', product_id)
+    else:
+
+        data_reviews = reviews(customer=user, product=get_details_product, ratings=rating_number, review_text=review_text)
+        data_reviews.save()
+
+        messages.success(request, 'Your Review Has Been Added !!')
+        return redirect('product_detail', product_id)
+

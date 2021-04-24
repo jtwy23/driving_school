@@ -71,6 +71,27 @@ class products(models.Model):
     def __str__(self):
         return self.product_name
 
+    def avarege_review(self):
+        filter_product_reviews = reviews.objects.filter(product=self)
+        filter_product_reviews_qty = reviews.objects.filter(product=self).count()
+
+        # making average rating
+        total_ratings = 0
+        for i in filter_product_reviews:
+            total_ratings = total_ratings + int(i.ratings)
+            # print(total_ratings)
+        if filter_product_reviews_qty == 0:
+            average_rating = 0
+        else:
+            average_rating = total_ratings / filter_product_reviews_qty
+            print(average_rating)
+        average_rating = "%0.1f" % average_rating
+        return average_rating
+
+    def product_reviews_qty(self):
+        filter_product_reviews_qty = reviews.objects.filter(product=self).count()
+        return filter_product_reviews_qty
+
 
 # Customer more details
 class customer_more_information(models.Model):
@@ -81,3 +102,16 @@ class customer_more_information(models.Model):
     Phone_number = models.CharField(max_length=200)
     Postcode = models.CharField(max_length=200, default='')
     Address = models.CharField(max_length=200)
+
+
+class reviews(models.Model):
+    class Meta:
+        verbose_name_plural = 'Products Review'
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(products, on_delete=models.CASCADE)
+    ratings = models.CharField(max_length=1)
+    review_text = models.TextField()
+    review_time = models.DateTimeField(default=datetime.now(), blank=True)
+
+    def __str__(self):
+        return self.customer.first_name + " - "+self.ratings
