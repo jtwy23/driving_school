@@ -9,14 +9,11 @@ from home.models import products
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     Lesson = models.ForeignKey(
-        products,
-        on_delete=models.CASCADE,
-        blank=True,
+        products, on_delete=models.CASCADE, blank=True,
         null=True
     )
     Instructor = models.ForeignKey(
-        instructor_information,
-        on_delete=models.CASCADE,
+        instructor_information, on_delete=models.CASCADE,
         blank=True, null=True
     )
     order_id = models.CharField(max_length=1000)

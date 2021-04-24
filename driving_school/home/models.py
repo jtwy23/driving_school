@@ -57,15 +57,12 @@ class products(models.Model):
         null=True, blank=True
     )
     product_price = models.CharField(max_length=2000)
-    image = models.ImageField(upload_to='uploads/product_image')
+    image = models.ImageField(
+        upload_to='uploads/product_image', blank=True, default='')
     image2 = models.ImageField(
-        upload_to='uploads/product_image', null=True, blank=True, default='')
+        upload_to='uploads/product_image', blank=True, default='')
     image3 = models.ImageField(
-        upload_to='uploads/product_image', null=True, blank=True, default='')
-    image4 = models.ImageField(
-        upload_to='uploads/product_image', null=True, blank=True, default='')
-    image5 = models.ImageField(
-        upload_to='uploads/product_image', null=True, blank=True, default='')
+        upload_to='uploads/product_image', blank=True, default='')
     description = models.TextField()
 
     def __str__(self):
