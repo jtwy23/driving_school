@@ -5,9 +5,9 @@
 {%block body%}
 
 <style>
-	.profile-pic {
+	.profile-pic{
 		max-width: 200px;
-		max-height: 200px;
+		max-height:200px;
 		margin: 0 auto;
 		border-radius: 50%;
 	}
@@ -34,18 +34,17 @@
 
 
 <div class="row">
-	<div class="col-md-1"></div>
+    <div class="col-md-1"></div>
 	<div class="col-md-3">
 		<div class="card card-body">
 			<a class="btn btn-warning" href="{% url 'index' %}">Back to Home</a>
 			<hr>
 			<h3 style="text-align: center">Profile Settings</h3>
 			<hr>
-			<img src="{% static "webapp1/images/icons/user.png" %}" class="rounded profile-pic" alt="user">
 			<h5 class="container text-center"><b>{{request.user.first_name}} {{request.user.last_name}} </b></h5>
 		</div>
 	</div>
-	<div class="col-md-1"></div>
+    <div class="col-md-1"></div>
 	<div class="col-md-6">
 		<div class="card card-body">
 			<div class="col-md-2 mb-4">
@@ -84,7 +83,7 @@
 							{% else %}
 							<i>None</i>
 							{% endif %}
-						</td>
+							</td>
 					</tr>
 					<tr>
 						<td>Postcode: </td>
@@ -94,7 +93,7 @@
 							{% else %}
 							<i>None</i>
 							{% endif %}
-						</td>
+							</td>
 					</tr>
 				</tbody>
 			</table>
