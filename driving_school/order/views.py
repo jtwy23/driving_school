@@ -256,7 +256,7 @@ class PaymentView(View):
             )
             amount = int(sum_of_bill)
 
-            # Discount conditiond
+            # Discount condition
             if amount > 100:
                 a = amount*70
                 print(a)
