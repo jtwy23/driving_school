@@ -25,46 +25,46 @@
 
 <style>
 	.StripeElement {
-	box-sizing: border-box;
+		box-sizing: border-box;
 
-	height: 40px;
+		height: 40px;
 
-	padding: 10px 12px;
+		padding: 10px 12px;
 
-	border: 1px solid transparent;
-	border-radius: 4px;
-	background-color: white;
+		border: 1px solid transparent;
+		border-radius: 4px;
+		background-color: white;
 
-	box-shadow: 0 1px 3px 0 #e6ebf1;
-	-webkit-transition: box-shadow 150ms ease;
-	transition: box-shadow 150ms ease;
+		box-shadow: 0 1px 3px 0 #e6ebf1;
+		-webkit-transition: box-shadow 150ms ease;
+		transition: box-shadow 150ms ease;
 	}
 
 	.StripeElement--focus {
-	box-shadow: 0 1px 3px 0 #cfd7df;
+		box-shadow: 0 1px 3px 0 #cfd7df;
 	}
 
 	.StripeElement--invalid {
-	border-color: #fa755a;
+		border-color: #fa755a;
 	}
 
 	.StripeElement--webkit-autofill {
-	background-color: #fefde5 !important;
+		background-color: #fefde5 !important;
 	}
 
 	.form-row,
 	.submit-btn,
 	.card-element {
-	width: 100%;
+		width: 100%;
 	}
 
 	.form-row {
-	padding: 2em;
+		padding: 2em;
 	}
 
 	#paypal-button-container {
-	margin-top: 2em;
-	width: 100%;
+		margin-top: 2em;
+		width: 100%;
 	}
 </style>
 
@@ -72,13 +72,13 @@
 	<!-- Breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+			<a href="{% url 'index' %}" class="stext-109 cl8 hov-cl1 trans-04">
 				Home
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
 			<span class="stext-109 cl4">
-				Shopping Cart
+				Payment
 			</span>
 		</div>
 	</div>
@@ -87,10 +87,10 @@
 	<!-- Shopping Cart -->
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
-				<div class="m-l-25 m-r--38 m-lr-0-xl">
+			<div class="col-lg-10 col-xl-7 m-lr-auto">
+				<div class="">
 					<div class="wrap-table-shopping-cart">
-						<table class="table-shopping-cart" id="items">
+						<table class="table table-bordered" id="items">
 							<tr class="table_head">
 								<th class="column-1"></th>
 								<th class="column-2"></th>
@@ -100,7 +100,7 @@
 
 							<tr>
 								<td colspan="5">
-									<div class="size-400 bor10 p-lr-70 p-t-30 p-b-70 p-lr-15-lg w-full-md">
+									<div class="size-400 p-lr-70 p-t-30 p-b-70 p-lr-15-lg w-full-md">
 										<h3 class="text-center">Credit Card</h3>
 										<form method="POST" id="payment-form" class="payment-form">
 											{% csrf_token %}
@@ -178,74 +178,20 @@
 
 <!-- Cart -->
 <script>
-// console.log('working');
-var all_prod=[];
-var all_prod_price=[];
-var all_prod_qty=[];
+	// console.log('working');
+	var all_prod = [];
+	var all_prod_price = [];
+	var all_prod_qty = [];
 
 
-var prod_details=[];
+	var prod_details = [];
 
 
-var sum=0;
-var itemtotalprice=0;
-var totalprice=0;
+	var sum = 0;
+	var itemtotalprice = 0;
+	var totalprice = 0;
 
-if ($.isEmptyObject(product_cart)){
-
-					mystr2 = `{% for i in order %}
-							<ul class="header-cart-wrapitem w-full">
-								<li class="header-cart-item flex-w flex-t m-b-12">
-									<div class="header-cart-item-img">
-										<img src="{{ MEDIA_URL }}{{i.Lesson.image}}" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt p-t-8">
-										<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-											Lesson : {{i.Lesson}}
-										</a>
-
-										<span class="header-cart-item-info">
-											Price : £{{i.Lesson_price}}
-										</span>
-
-										<span class="header-cart-item-info">
-											Order Id : {{i.order_id}}
-										</span>
-
-										<span class="header-cart-item-info">
-											Instructor : {{i.Instructor}}
-										</span>
-									</div>
-								</li>
-							</ul>
-						{% endfor %}`
-	$('#items2').append(mystr2);
-
-		delivery=0;
-		discount=0;
-
-}
-else{
-	for (item in product_cart){
-	    // console.log('product ase')
-		let name = product_cart[item][1];
-		let qty = product_cart[item][0]
-		let itemprice=product_cart[item][2]
-		let itempic=product_cart[item][3]
-
-
-		sum = sum + qty;
-		itemtotalprice=qty* itemprice;
-		totalprice = totalprice + qty* itemprice;
-
-
-		prod_details= prod_details + `Product Name : ${name}, Product Quantity : ${qty}, Product Single Price : £ ${itemprice}, `
-
-		//all_prod=all_prod+', '+name
-		all_prod.push(name)
-		all_prod_price.push(itemprice)
-		all_prod_qty.push(qty)
+	if ($.isEmptyObject(product_cart)) {
 
 		mystr2 = `{% for i in order %}
 							<ul class="header-cart-wrapitem w-full">
@@ -274,95 +220,157 @@ else{
 								</li>
 							</ul>
 						{% endfor %}`
-
 		$('#items2').append(mystr2);
 
+		delivery = 0;
+		discount = 0;
+
+	} else {
+		for (item in product_cart) {
+			// console.log('product ase')
+			let name = product_cart[item][1];
+			let qty = product_cart[item][0]
+			let itemprice = product_cart[item][2]
+			let itempic = product_cart[item][3]
+
+
+			sum = sum + qty;
+			itemtotalprice = qty * itemprice;
+			totalprice = totalprice + qty * itemprice;
+
+
+			prod_details = prod_details +
+				`Product Name : ${name}, Product Quantity : ${qty}, Product Single Price : £ ${itemprice}, `
+
+			//all_prod=all_prod+', '+name
+			all_prod.push(name)
+			all_prod_price.push(itemprice)
+			all_prod_qty.push(qty)
+
+			mystr2 = `{% for i in order %}
+							<ul class="header-cart-wrapitem w-full">
+								<li class="header-cart-item flex-w flex-t m-b-12">
+									<div class="header-cart-item-img">
+										<img src="{{ MEDIA_URL }}{{i.Lesson.image}}" alt="IMG">
+									</div>
+
+									<div class="header-cart-item-txt p-t-8">
+										<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+											Lesson : {{i.Lesson}}
+										</a>
+
+										<span class="header-cart-item-info">
+											Price : £{{i.Lesson_price}}
+										</span>
+
+										<span class="header-cart-item-info">
+											Order Id : {{i.order_id}}
+										</span>
+
+										<span class="header-cart-item-info">
+											Instructor : {{i.Instructor}}
+										</span>
+									</div>
+								</li>
+							</ul>
+						{% endfor %}`
+
+			$('#items2').append(mystr2);
+
+		}
 	}
-}
 
 
 
 
-{% if Thank %}
-alert('Thank you for ordering. Your order ID is {{order_id}}. Check your email.')
-localStorage.clear();
-document.location='/'
-{% endif %}
-
-
-
-//update the cart
-function updateCart(product_cart){
-	var sum = 0;
-	for (var item in product_cart){
-		sum = sum + product_cart[item][0]
-		// console.log(item)
+	{
+		%
+		if Thank %
 	}
-	localStorage.setItem('product_cart', JSON.stringify(product_cart))
-	document.getElementById('product_cart').innerHTML = sum;
-	document.location='cart';
-	// updatePopover(product_cart);
-}
+	alert('Thank you for ordering. Your order ID is {{order_id}}. Check your email.')
+	localStorage.clear();
+	document.location = '/' {
+		%
+		endif %
+	}
+
+
+
+	//update the cart
+	function updateCart(product_cart) {
+		var sum = 0;
+		for (var item in product_cart) {
+			sum = sum + product_cart[item][0]
+			// console.log(item)
+		}
+		localStorage.setItem('product_cart', JSON.stringify(product_cart))
+		document.getElementById('product_cart').innerHTML = sum;
+		document.location = 'cart';
+		// updatePopover(product_cart);
+	}
 </script>
 
 <!-- Stripe payments -->
 <script>
-	var stripe = Stripe("pk_test_51IMFIgGHrfeW2r6wZEnHvstrlnxyUmAevvq7uxNoJcUxDyU723HHasIY4ssEFnIzq3P3MNwh8cfLezzjRXk7E1QD00D2L1g8eZ");
+	var stripe = Stripe(
+		"pk_test_51IMFIgGHrfeW2r6wZEnHvstrlnxyUmAevvq7uxNoJcUxDyU723HHasIY4ssEFnIzq3P3MNwh8cfLezzjRXk7E1QD00D2L1g8eZ");
 
 	var elements = stripe.elements();
 
 	var style = {
-    base: {
-		color: "#32325d",
-		fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-		fontSmoothing: "antialiased",
-		fontSize: "16px",
-		"::placeholder": {
-		color: "#aab7c4",
+		base: {
+			color: "#32325d",
+			fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+			fontSmoothing: "antialiased",
+			fontSize: "16px",
+			"::placeholder": {
+				color: "#aab7c4",
+			},
 		},
-    },
-    invalid: {
-		color: "#fa755a",
-		iconColor: "#fa755a",
-    },
+		invalid: {
+			color: "#fa755a",
+			iconColor: "#fa755a",
+		},
 	};
 
-	var card = elements.create("card", { style: style });
+	var card = elements.create("card", {
+		style: style
+	});
 
 	card.mount("#card-element");
 
 	card.on("change", function (event) {
-    var displayError = document.getElementById("card-errors");
-    if (event.error) {
-		displayError.textContent = event.error.message;
-    } else {
-		displayError.textContent = "";
-    }
+		var displayError = document.getElementById("card-errors");
+		if (event.error) {
+			displayError.textContent = event.error.message;
+		} else {
+			displayError.textContent = "";
+		}
 	});
 
 	var form = document.getElementById("payment-form");
 	form.addEventListener("submit", function (event) {
-    event.preventDefault();
+		event.preventDefault();
 
-    stripe.createToken(card).then(function (result) {
-		if (result.error) {
-			console.log(result.error);
-			var errorElement = document.getElementById("card-errors");
-			errorElement.textContent = result.error.message;
-		} else {
-			stripeTokenHandler(result.token);
-		}
-    });
+		stripe.createToken(card).then(function (result) {
+			if (result.error) {
+				console.log(result.error);
+				var errorElement = document.getElementById("card-errors");
+				errorElement.textContent = result.error.message;
+			} else {
+				stripeTokenHandler(result.token);
+			}
+		});
 	});
 
 	function stripeTokenHandler(token) {
-    var form = document.getElementById("payment-form");
-    var hiddenInput = document.createElement("input");
-    hiddenInput.setAttribute("type", "hidden");
-    hiddenInput.setAttribute("name", "stripeToken");
-    hiddenInput.setAttribute("value", token.id);
-    form.appendChild(hiddenInput);
-    form.submit();
+		var form = document.getElementById("payment-form");
+		var hiddenInput = document.createElement("input");
+		hiddenInput.setAttribute("type", "hidden");
+		hiddenInput.setAttribute("name", "stripeToken");
+		hiddenInput.setAttribute("value", token.id);
+		form.appendChild(hiddenInput);
+		form.submit();
 	}
 </script>
 
