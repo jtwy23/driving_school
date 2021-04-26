@@ -89,6 +89,13 @@
 							<span class="stext-105 cl3">
 								£{{all_prod.product_price}}
 							</span>
+							{% if all_prod.product_reviews_qty > 0 %}
+
+							<span class="fs-18 cl11">
+								<i class="zmdi zmdi-star"></i>
+								{{all_prod.avarege_review}} ({{all_prod.product_reviews_qty}})
+							</span>
+							{% endif %}
 						</div>
 					</div>
 				</div>

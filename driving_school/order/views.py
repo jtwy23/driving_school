@@ -135,7 +135,7 @@ def checkout(request):
                 print(type(lesson_Id))
 
                 # By ID get the lesson details
-                get_lesson = products.objects.get(id=lesson_Id)
+                get_lesson = products.objects.get(id=22)
                 print(get_lesson)
 
                 # Single price lesson
