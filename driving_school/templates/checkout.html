@@ -9,14 +9,14 @@
 <body class="animsition">
 	<!-- Breadcrumb -->
 	<div class="container">
-		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+		<div class="bread-crumb flex-w p-l-25 p-r-15 p-lr-0-lg">
+			<a href="{% url 'index' %}" class="stext-109 cl8 hov-cl1 trans-04">
 				Home
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
 			<span class="stext-109 cl4">
-				Shopping Cart
+				Checkout
 			</span>
 		</div>
 	</div>
@@ -24,10 +24,10 @@
 	<!-- Shopping Cart -->
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
-				<div class="m-l-25 m-r--38 m-lr-0-xl">
+			<div class="col-lg-10 col-xl-7 m-lr-auto">
+				<div class="">
 					<div class="wrap-table-shopping-cart">
-						<table class="table-shopping-cart" id="items">
+						<table class="table table-bordered" id="items">
 							<tr class="table_head">
 								<th class="column-1"></th>
 								<th class="column-2"></th>
@@ -37,7 +37,7 @@
 
 							<tr>
 								<td colspan="5">
-									<div class="size-400 bor10 p-lr-70 p-t-30 p-b-70 p-lr-15-lg w-full-md">
+									<div class="size-400 p-b-70 w-full-md">
 										<h4 class="mtext-105 cl2 txt-center p-b-20">
 											User Details
 										</h4>
@@ -187,6 +187,16 @@
 	</div>
 </body>
 
+
+{% if Thanks %}
+<script>
+	// alert('Thanks For ordering. Your Order Id is {{order_id}}. Check Your Email.')
+	localStorage.clear();
+	document.location = 'payment'
+</script>
+{% endif %}
+
+
 {% endblock %}
 
 {% block js %}
@@ -240,6 +250,11 @@
 
 			all_prod.push(Products_id);
 
+			console.log(Products_id)
+
+			// int prodid[item] = Products_id
+			// console.log('okko')
+			// console.log(prodid[item][5])
 
 			all_prod_price.push(itemprice);
 			all_prod_qty.push(qty);
@@ -316,11 +331,7 @@
 
 	$('#checkout_money').val(JSON.stringify(checkout_total));
 
-	{% if Thanks %}
-	// alert('Thanks For ordering. Your Order Id is {{order_id}}. Check Your Email.')
-	localStorage.clear();
-	document.location = 'payment' 
-	{% endif %}
+
 
 
 

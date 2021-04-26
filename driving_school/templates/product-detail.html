@@ -12,7 +12,7 @@
 <div class="container">
 	<div class="alert alert-success alert-dismissible fade show" role="alert">
 		<h5 class="text-center"> {{message}}</h5>
-		
+
 	</div>
 </div>
 
@@ -116,14 +116,24 @@
 							<h2 id="nameproduct{{get_product.id}}">{{get_product.product_name}}</h2>
 						</h4>
 
+						<span class="fs-18 cl11">
+
+							<i class="zmdi zmdi-star"></i>
+
+						</span>
+						<b>{{average_rating}} ({{filter_product_reviews_qty}})</b>
+
+
 						<input type="hidden" value="{{get_product.Intructor}}" id="instructor_id">
 						<input type="hidden" value="{{get_product.id}}" id="product_id">
 
-						<span class="mtext-106 cl2">
-							£<span id="priceproduct{{get_product.id}}">
-								{{get_product.product_price}}
+						<div class="pt-4">
+							<span class="mtext-106 cl2">
+								£<span id="priceproduct{{get_product.id}}">
+									{{get_product.product_price}}
+								</span>
 							</span>
-						</span>
+						</div>
 
 						<p class="stext-102 cl3 p-t-23">
 							{{get_product.description}}
