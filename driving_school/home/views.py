@@ -351,3 +351,4 @@ def customer_review(request):
         messages.success(request, 'Your Review Has Been Added !!')
         return redirect('product_detail', product_id)
 
+

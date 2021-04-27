@@ -15,6 +15,7 @@ urlpatterns = [
     path('edit_profile', views.edit_profile, name='edit_profile'),
     # User signup
     path('login-signup', views.signup_login, name='signup_login'),
+    path('accounts/login/', views.signup_login, name='signup_login'),
     # User login
     path('login', views.login_func, name='login_func'),
     # User logout
@@ -27,6 +28,7 @@ urlpatterns = [
     path('customer_review', views.customer_review, name='customer_review'),
     # edit review
     path('edit_review', views.edit_review, name='edit_review'),
+
 
     #forget password
     path('password_reset/',auth_views.PasswordResetView.as_view(),name='password_reset'),
