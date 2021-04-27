@@ -106,6 +106,22 @@ def checkout(request):
         all_prod = request.POST.get('all_prod')
         print(all_prod)
 
+        all_prod = all_prod[:-1]
+        print(all_prod)
+
+        all_prod = all_prod[2:]
+        print(all_prod)
+
+        
+        print('ki')
+        
+        str = all_prod
+        print(str.split(",")) 
+
+        all_products = str.split(",")
+        print(all_products)
+    
+
         all_prod_price = request.POST.get('all_prod_price')
         all_prod_qty = request.POST.get('all_prod_qty')
         all_prod_price_qty = request.POST.get('all_prod_price_qty')
@@ -118,52 +134,40 @@ def checkout(request):
         zip = request.POST.get('zip')
 
         # Save all the orders to database by loop
-        for i in all_prod:
+        for i in all_products:
             print(i)
-            # print(type(i))
+            print(type(i))
 
-            check_integer = i.isnumeric()
-            print(check_integer)
+            lesson_Id = int(i)
+            print(type(lesson_Id))
 
-            # If the value is integer
-            if check_integer:
-                print('yes')
-                print(i)
-                print(type(i))
+            # By ID get the lesson details
+            get_lesson = products.objects.get(id=lesson_Id)
+            print(get_lesson)
 
-                lesson_Id = int(i)
-                print(type(lesson_Id))
+            # Single price lesson
+            single_price = get_lesson.product_price
+            # Lesson instructor
+            instructor = get_lesson.Intructor
 
-                # By ID get the lesson details
-                get_lesson = products.objects.get(id=22)
-                print(get_lesson)
+            # Generate random order ID
+            random_num = random.randint(2345678909800, 9923456789000)
 
-                # Single price lesson
-                single_price = get_lesson.product_price
-                # Lesson instructor
-                instructor = get_lesson.Intructor
+            uniqe_confirm = Order.objects.filter(order_id=random_num)
 
-                # Generate random order ID
-                random_num = random.randint(2345678909800, 9923456789000)
+            while uniqe_confirm:
+                random_num = random.randint(234567890980000, 992345678900000)
+                if not Order.objects.filter(order_id=random_num):
+                    break
 
-                uniqe_confirm = Order.objects.filter(order_id=random_num)
-
-                while uniqe_confirm:
-                    random_num = random.randint(
-                        234567890980000, 992345678900000)
-                    if not Order.objects.filter(order_id=random_num):
-                        break
-
-                user = request.user
-                # Save order
-                post_order = Order(
-                    user=user, Lesson=get_lesson, Instructor=instructor,
-                    order_id=random_num, Lesson_price=single_price,
-                    first_name=first_name, last_name=last_name, email=email,
-                    phone=phone, address=address, zip=zip, order_date=datetime.datetime.now())
-                post_order.save()
-            else:
-                print('no')
+            user = request.user
+            # Save order
+            post_order = Order(
+                user=user, Lesson=get_lesson, Instructor=instructor,
+                order_id=random_num, Lesson_price=single_price,
+                first_name=first_name, last_name=last_name, email=email,
+                phone=phone, address=address, zip=zip, order_date=datetime.datetime.now())
+            post_order.save()
 
         Thanks = True
         return render(request, 'checkout.html', {'Thanks': Thanks})

@@ -204,7 +204,7 @@
 <script>
 	// console.log('working');
 
-	let all_prod = [];
+	let all_prod = "";
 
 	let all_prod_price = [];
 	let all_prod_qty = [];
@@ -246,11 +246,11 @@
 			prod_details = prod_details +
 				`Product Name : ${name}, Product Quantity : ${qty}, Product Single Price : £ ${itemprice}, `
 
-			//all_prod=all_prod+', '+name
+			all_prod = all_prod + "," + Products_id
 
-			all_prod.push(Products_id);
+			// all_prod.push(Products_id);
 
-			console.log(Products_id)
+			// console.log(Products_id)
 
 			// int prodid[item] = Products_id
 			// console.log('okko')
