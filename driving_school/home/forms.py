@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import customer_more_information
+from .models import customer_more_information, reviews
 from django.contrib.auth.models import User
 
 

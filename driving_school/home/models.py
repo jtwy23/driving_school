@@ -112,3 +112,5 @@ class reviews(models.Model):
 
     def __str__(self):
         return self.customer.first_name + " - "+self.ratings
+
+    

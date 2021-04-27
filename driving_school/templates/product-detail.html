@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% load static %}
 
 {% block title %}Product Details - Driving School{% endblock %}
@@ -210,7 +210,38 @@
 											</div>
 
 											<p class="stext-102 cl6">
-												{{i.review_text}}
+												{{ i.review_text }}
+
+
+												{% if request.user == i.customer %}
+
+												<button class="btn btn-warning btn-sm float-right" type="button"
+													data-toggle="collapse" data-target="#collapseExample"
+													aria-expanded="false" aria-controls="collapseExample">
+													<small>Edit</small>
+												</button>
+
+												<div class="collapse" id="collapseExample">
+													<div class="card card-body">
+														<form method="POST" action="{% url 'edit_review' %}">
+															{% csrf_token %}
+
+															<div class="form-group">
+																<label for="exampleFormControlTextarea1">Edit
+																	Review</label>
+																<textarea class="form-control" name="edit_review_text"
+																	id="exampleFormControlTextarea1" rows="3"
+																	required>{{ i.review_text }}</textarea>
+															</div>
+															<input type="hidden" value="{{i.id}}" name="review_id">
+															<button class="btn btn-outline-warning btn-sm"
+																type="submit">Update</button>
+														</form>
+													</div>
+												</div>
+												{% endif %}
+
+
 											</p>
 										</div>
 									</div>

@@ -231,6 +231,21 @@ def product_detail(request, pk):
     context2 = {'get_product': get_product, 'all_pro_cat': all_pro_cat, 'filter_product_reviews':filter_product_reviews, 'filter_product_reviews_qty':filter_product_reviews_qty, 'average_rating':average_rating}
     return render(request, 'product-detail.html', context2)
 
+def edit_review(request):
+    review_id = request.POST.get('review_id')
+    edit_review_text = request.POST.get('edit_review_text')
+
+    reviews_get = reviews.objects.get(id=review_id)
+    print(reviews_get)
+
+    reviews_get.review_text=edit_review_text
+    reviews_get.save()
+
+    get_prod = reviews_get.product.id
+
+    messages.success(request, 'Review Update Successfully !!')
+
+    return redirect('product_detail', get_prod)
 
 # My profile page
 def profile(request):

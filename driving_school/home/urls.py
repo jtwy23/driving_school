@@ -25,6 +25,8 @@ urlpatterns = [
     path('email/confirmation/<str:activation_key>/', views.email_confirm, name='email_activation'),
     #customer review
     path('customer_review', views.customer_review, name='customer_review'),
+    # edit review
+    path('edit_review', views.edit_review, name='edit_review'),
 
     #forget password
     path('password_reset/',auth_views.PasswordResetView.as_view(),name='password_reset'),
