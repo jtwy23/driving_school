@@ -202,8 +202,6 @@
 {% block js %}
 
 <script>
-	// console.log('working');
-
 	let all_prod = "";
 
 	let all_prod_price = [];
@@ -229,7 +227,6 @@
 		checkout_total = 0;
 	} else {
 		for (item in product_cart) {
-			// console.log('product ase')
 			let name = product_cart[item][1];
 			let qty = product_cart[item][0];
 			let itemprice = product_cart[item][2];
@@ -247,15 +244,6 @@
 				`Product Name : ${name}, Product Quantity : ${qty}, Product Single Price : £ ${itemprice}, `
 
 			all_prod = all_prod + "," + Products_id
-
-			// all_prod.push(Products_id);
-
-			// console.log(Products_id)
-
-			// int prodid[item] = Products_id
-			// console.log('okko')
-			// console.log(prodid[item][5])
-
 			all_prod_price.push(itemprice);
 			all_prod_qty.push(qty);
 			all_prod_price_qty.push(itemtotalprice);
@@ -307,15 +295,10 @@
 
 		checkout_money = checkout_total;
 	}
-	// document.getElementById('product_cart').innerHTML = sum;
 	document.getElementById('totalprice').innerHTML = totalprice;
-	// document.getElementById('totalprice2').innerHTML = totalprice;
-
 	document.getElementById('discount').innerHTML = discount_abc;
 	document.getElementById('checkout_total').innerHTML = checkout_total;
 
-
-	// $('#items_json').val(JSON.stringify(product_cart));
 	const a = JSON.stringify(product_cart)
 	$('#items_json').val(a);
 
@@ -331,21 +314,15 @@
 
 	$('#checkout_money').val(JSON.stringify(checkout_total));
 
-
-
-
-
 	//Update cart
 	function updateCart(product_cart) {
 		var sum = 0;
 		for (var item in product_cart) {
 			sum = sum + product_cart[item][0]
-			// console.log(item)
 		}
 		localStorage.setItem('product_cart', JSON.stringify(product_cart))
 		document.getElementById('product_cart').innerHTML = sum;
 		document.location = 'cart';
-		// updatePopover(product_cart);
 	}
 
 

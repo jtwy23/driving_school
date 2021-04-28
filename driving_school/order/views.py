@@ -9,12 +9,13 @@ import datetime
 from django.views.generic import ListView, DetailView, View
 import stripe
 from decouple import config
+import os
 
 # Create your views here.
 
 
 # stripe Secret key
-stripe.api_key = config('STRIPE')
+stripe.api_key = os.environ.get('STRIPE')
 
 
 def my_orders(request):
@@ -40,7 +41,6 @@ def my_order_details(request, pk):
 def customer_canceled_order(request):
     # To get current time and date
     now_time = datetime.datetime.now()
-    print(now_time)
 
     # Get order ID to get the details
     order_id = request.POST.get('order_id')
@@ -48,7 +48,6 @@ def customer_canceled_order(request):
 
     # Get time and date of order time
     order_time = get_order.order_date
-    print(order_time)
 
     date_time_str = order_time
 
@@ -104,23 +103,14 @@ def checkout(request):
         checkout_money = request.POST.get('checkout_money')
 
         all_prod = request.POST.get('all_prod')
-        print(all_prod)
 
         all_prod = all_prod[:-1]
-        print(all_prod)
 
         all_prod = all_prod[2:]
-        print(all_prod)
 
-        
-        print('ki')
-        
         str = all_prod
-        print(str.split(",")) 
 
         all_products = str.split(",")
-        print(all_products)
-    
 
         all_prod_price = request.POST.get('all_prod_price')
         all_prod_qty = request.POST.get('all_prod_qty')
@@ -135,18 +125,15 @@ def checkout(request):
 
         # Save all the orders to database by loop
         for i in all_products:
-            print(i)
-            print(type(i))
 
             lesson_Id = int(i)
-            print(type(lesson_Id))
 
             # By ID get the lesson details
             get_lesson = products.objects.get(id=lesson_Id)
-            print(get_lesson)
 
             # Single price lesson
             single_price = get_lesson.product_price
+
             # Lesson instructor
             instructor = get_lesson.Intructor
 
@@ -208,15 +195,12 @@ class PaymentView(View):
         user = self.request.user
         # Get orders still to pay
         order = Order.objects.filter(user=user, ordered=False)
-        print(order)
 
         sum_of_bill = 0
 
         # Order price
         for i in order:
-            print(i)
             sum_of_bill = sum_of_bill + int(i.Lesson_price)
-        print(sum_of_bill)
 
         # Discount conditions
         if sum_of_bill >= 100:
@@ -288,7 +272,6 @@ class PaymentView(View):
             email_for_buy = render_to_string(
                 'email_to_buy.html',
                 {
-
                     'first_name': self.request.user.first_name,
                     'last_name': self.request.user.last_name,
                     'order': order,
@@ -298,10 +281,10 @@ class PaymentView(View):
 
             email = self.request.user.email
             send_mail(
-                'Purchase Order',  # subject
-                email_for_buy,  # massage
-                '',  # from email
-                [email],  # to email
+                'Purchase Order',  # Subject
+                email_for_buy,  # Message
+                '',  # From email
+                [email],  # To email
 
                 fail_silently=True,
             )

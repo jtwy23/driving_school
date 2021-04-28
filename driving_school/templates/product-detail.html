@@ -415,51 +415,27 @@
 		console.log(picture_product)
 
 		// if the add to cart button is clicked, add/increament the item
-
 		$('.product_cart').click({
 			abc: "picture_product"
 		}, function () {
-			// $('.divproduct').on('click', 'button.product_cart', function(){
-			console.log('clicked now');
-
-			console.log("picture : ");
-			console.log(picture_product);
-
-			// console.log(product_cart)
 			var idstr = this.id.toString();
-			console.log("id...." + idstr);
-
 
 			if (product_cart[idstr] != undefined) {
 				console.log('old')
 				qty = product_cart[idstr][0] + 1;
 				console.log(product_cart[idstr]);
 			} else {
-				console.log(idstr)
-				// qty = 1;
-
+				
 				var qty = document.getElementById("qty_product").value;
 				var instructor_id = document.getElementById("instructor_id").value;
 				var product_id = document.getElementById("product_id").value;
 
-
-				// qty = document.getElementById('qty_product').value;
-				// document.getElementById("myText").value = "Johnny Bravo";
-				console.log(qty)
-
-
 				name = document.getElementById('name' + idstr).innerHTML;
 				price = document.getElementById('price' + idstr).innerHTML;
 
-
-
 				product_cart[idstr] = [parseInt(qty), name, parseInt(price), picture_product, instructor_id, parseInt(
 					product_id)];
-				console.log(product_cart[idstr]);
-				console.log('new')
 			}
-			// console.log("before update");
-			// console.log(product_cart);
 
 			b = `<button class="btn btn-danger"> Added to Cart</button>`
 

@@ -25,9 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-# 'DEVELOPMENT' in os.environ
+DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = ['driving-school-v1.herokuapp.com', 'localhost']
 
@@ -51,7 +49,7 @@ INSTALLED_APPS = [
 
     # other
     'crispy_forms',
-    # 'storages',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -187,6 +185,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'drivingschooltester@gmail.com'
-EMAIL_HOST_PASSWORD = config('EMAIL_PASS')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'Driving School <DrivingSchool@support>'

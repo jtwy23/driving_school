@@ -141,17 +141,10 @@
 </script>
 
 <script>
-	// console.log('working');
-
-
 	var all_prod = [];
 	var all_prod_price = [];
 	var all_prod_qty = [];
-
-
 	var prod_details = [];
-
-
 	var sum = 0;
 	var itemtotalprice = 0;
 	var totalprice = 0;
@@ -181,8 +174,6 @@
 
 			prod_details = prod_details +
 				`Product Name : ${name}, Product Quantity : ${qty}, Product Single Price : $ ${itemprice}, `
-
-			//all_prod=all_prod+', '+name
 			all_prod.push(name)
 			all_prod_price.push(itemprice)
 			all_prod_qty.push(qty)
@@ -216,12 +207,9 @@
 			discount_abc = discount_abc + " (10% Discount) ";
 		}
 
-
-
-
 		checkout_money = checkout_total;
 	}
-	// document.getElementById('product_cart').innerHTML = sum;
+	
 	document.getElementById('totalprice').innerHTML = totalprice
 	document.getElementById('totalprice2').innerHTML = totalprice
 
@@ -229,7 +217,7 @@
 	document.getElementById('checkout_total').innerHTML = checkout_total;
 
 
-	// $('#items_json').val(JSON.stringify(product_cart));
+
 	const a = JSON.stringify(product_cart)
 	$('#items_json').val(a);
 
@@ -242,21 +230,17 @@
 
 	$('#checkout_money').val(JSON.stringify(checkout_total));
 
-
-
-
-
 	//update the cart
 	function updateCart(product_cart) {
 		var sum = 0;
 		for (var item in product_cart) {
 			sum = sum + product_cart[item][0]
-			// console.log(item)
+			
 		}
 		localStorage.setItem('product_cart', JSON.stringify(product_cart))
 		document.getElementById('product_cart').innerHTML = sum;
 		document.location = 'cart';
-		// updatePopover(product_cart);
+		
 	}
 
 
@@ -264,7 +248,6 @@
 	$('.divproduct').on("click", "div.minus", function () {
 		console.log('minus_clicked');
 		var a = this.id.slice(12, );
-		console.log(a)
 		product_cart['product' + a][0] = product_cart['product' + a][0] - 1;
 		product_cart['product' + a][0] = Math.max(0, product_cart['product' + a][0]);
 		document.getElementById('valproduct' + a).value = product_cart['product' + a][0];
@@ -274,7 +257,6 @@
 	$('.divproduct').on("click", "div.plus", function () {
 		console.log('plus_clicked');
 		var a = this.id.slice(11, );
-		console.log(a)
 		product_cart['product' + a][0] = product_cart['product' + a][0] + 1;
 		document.getElementById('valproduct' + a).value = product_cart['product' + a][0];
 		updateCart(product_cart)

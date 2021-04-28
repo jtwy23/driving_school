@@ -337,24 +337,20 @@
 
 			<div class="p-t-40">
 				<div class="flex-c-m flex-w p-b-18">
-					<a href="#" class="m-all-1">
+					<a href="https://www.paypal.com/" target="_blank" class="m-all-1">
 						<img src="{% static 'webapp1/' %}images/icons/icon-pay-01.png" alt="ICON-PAY">
 					</a>
 
-					<a href="#" class="m-all-1">
+					<a href="https://www.visa.co.uk/" target="_blank" class="m-all-1">
 						<img src="{% static 'webapp1/' %}images/icons/icon-pay-02.png" alt="ICON-PAY">
 					</a>
 
-					<a href="#" class="m-all-1">
+					<a href="https://www.mastercard.co.uk/" target="_blank" class="m-all-1">
 						<img src="{% static 'webapp1/' %}images/icons/icon-pay-03.png" alt="ICON-PAY">
 					</a>
 
-					<a href="#" class="m-all-1">
+					<a href="https://www.americanexpress.com/" target="_blank" class="m-all-1">
 						<img src="{% static 'webapp1/' %}images/icons/icon-pay-04.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="{% static 'webapp1/' %}images/icons/icon-pay-05.png" alt="ICON-PAY">
 					</a>
 				</div>
 
@@ -429,7 +425,6 @@
 						</div></div><div class="col-md-8">`;
 
 				single_price_qty = product_cart[item][0] * product_cart[item][2];
-				// console.log('hi..'+single_price_qty)
 
 				total_price = total_price + single_price_qty;
 
@@ -447,10 +442,6 @@
 
 		//clear cart
 		function clearCart(product_cart) {
-			// product_cart = JSON.parse(localStorage.getItem('product_cart'));
-			// for (var item in product_cart){
-			// 	document.getElementById('div'+item).innerHTML = '<a id="' + item + '" class="tooltip-1 product_cart" data-toggle="tooltip" data-placement="left"><i class="ti-shopping-cart"></i><span>Add to cart</span></a>'
-			// }
 			localStorage.clear();
 			product_cart = {};
 			updateCart(product_cart);

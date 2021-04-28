@@ -204,15 +204,10 @@
 
 <!-- Cart -->
 <script>
-	// console.log('working');
 	var all_prod = [];
 	var all_prod_price = [];
 	var all_prod_qty = [];
-
-
 	var prod_details = [];
-
-
 	var sum = 0;
 	var itemtotalprice = 0;
 	var totalprice = 0;
@@ -253,7 +248,6 @@
 
 	} else {
 		for (item in product_cart) {
-			// console.log('product ase')
 			let name = product_cart[item][1];
 			let qty = product_cart[item][0]
 			let itemprice = product_cart[item][2]
@@ -268,7 +262,6 @@
 			prod_details = prod_details +
 				`Product Name : ${name}, Product Quantity : ${qty}, Product Single Price : £ ${itemprice}, `
 
-			//all_prod=all_prod+', '+name
 			all_prod.push(name)
 			all_prod_price.push(itemprice)
 			all_prod_qty.push(qty)
@@ -306,33 +299,21 @@
 		}
 	}
 
-
-
-
-	{
-		%
-		if Thank %
-	}
+	{% if Thank %}
 	alert('Thank you for ordering. Your order ID is {{order_id}}. Check your email.')
 	localStorage.clear();
-	document.location = '/' {
-		%
-		endif %
-	}
-
-
+	document.location = '/' 
+	{% endif %}
 
 	//update the cart
 	function updateCart(product_cart) {
 		var sum = 0;
 		for (var item in product_cart) {
 			sum = sum + product_cart[item][0]
-			// console.log(item)
 		}
 		localStorage.setItem('product_cart', JSON.stringify(product_cart))
 		document.getElementById('product_cart').innerHTML = sum;
 		document.location = 'cart';
-		// updatePopover(product_cart);
 	}
 </script>
 

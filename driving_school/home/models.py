@@ -72,7 +72,7 @@ class products(models.Model):
         filter_product_reviews = reviews.objects.filter(product=self)
         filter_product_reviews_qty = reviews.objects.filter(product=self).count()
 
-        # making average rating
+        # Average rating
         total_ratings = 0
         for i in filter_product_reviews:
             total_ratings = total_ratings + int(i.ratings)
@@ -112,5 +112,3 @@ class reviews(models.Model):
 
     def __str__(self):
         return self.customer.first_name + " - "+self.ratings
-
-    

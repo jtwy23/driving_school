@@ -61,7 +61,7 @@ def product_search(request):
 # Signup function
 def signup_login(request):
     if request.method == "POST":
-        # get all data  form teplate
+        # Get all data from teplate
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         email_sign = request.POST.get('email_sign')
@@ -80,15 +80,15 @@ def signup_login(request):
 
         if user_email_info:
             # Error message
-            erorr_message = "Email Already Exist"
+            erorr_message = "Email Already Exists"
 
         elif password_sign != password_sign_re:
             # Error message
-            erorr_message = "Passwords are not match !!"
+            erorr_message = "Passwords are not a match!"
 
         elif len(password_sign) < 7:
             # Error message
-            erorr_message = "Password Must Be At Least 7 Digits!"
+            erorr_message = "Password must be at least 7 characters!"
 
         if not erorr_message:
 
@@ -107,7 +107,7 @@ def signup_login(request):
             )
             customer_more_info.save()
 
-            # send mail
+            # Send email
             user = EmailConfirmed.objects.get(user=myuser)
             site = get_current_site(request)
             email = myuser.email
@@ -184,7 +184,7 @@ def login_func(request):
             login(request, user)
             return redirect('index')
         else:
-            erorr_message_2 ="Invalid Credentials, Please Try Again!"
+            erorr_message_2 = "Invalid Credentials, Please Try Again!"
 
             value_func2 = {
                 'erorr_message_2': erorr_message_2, 'log_username': log_username
@@ -209,43 +209,39 @@ def product_detail(request, pk):
 
     filter_product_reviews = reviews.objects.filter(product=get_product).order_by('-id')
     filter_product_reviews_qty = reviews.objects.filter(product=get_product).count()
-    #print(filter_product_reviews_qty)
 
-    # making average rating
-    total_ratings=0
+    # Average rating
+    total_ratings = 0
     for i in filter_product_reviews:
         total_ratings = total_ratings + int(i.ratings)
-        #print(total_ratings)
 
-    if filter_product_reviews_qty==0:
+    if filter_product_reviews_qty == 0:
         average_rating = 0
     else:
         average_rating = total_ratings/filter_product_reviews_qty
-        #print(average_rating)
 
     average_rating = "%0.1f" % average_rating
-
-    # print('this is all')
-    # print(average_rating, filter_product_reviews_qty)
 
     context2 = {'get_product': get_product, 'all_pro_cat': all_pro_cat, 'filter_product_reviews':filter_product_reviews, 'filter_product_reviews_qty':filter_product_reviews_qty, 'average_rating':average_rating}
     return render(request, 'product-detail.html', context2)
 
+
+# Review update
 def edit_review(request):
     review_id = request.POST.get('review_id')
     edit_review_text = request.POST.get('edit_review_text')
 
     reviews_get = reviews.objects.get(id=review_id)
-    print(reviews_get)
 
-    reviews_get.review_text=edit_review_text
+    reviews_get.review_text = edit_review_text
     reviews_get.save()
 
     get_prod = reviews_get.product.id
 
-    messages.success(request, 'Review Update Successfully !!')
+    messages.success(request, 'Review Successfully Updated')
 
     return redirect('product_detail', get_prod)
+
 
 # My profile page
 def profile(request):
@@ -327,13 +323,11 @@ def edit_profile(request):
         return redirect('index')
 
 
-
-
 def customer_review(request):
-    rating_number=request.POST.get('rating_number')
-    review_text=request.POST.get('review_text')
+    rating_number = request.POST.get('rating_number')
+    review_text = request.POST.get('review_text')
 
-    product_id=request.POST.get('product_id')
+    product_id = request.POST.get('product_id')
     get_details_product = products.objects.get(id=product_id)
 
     user = request.user
@@ -341,14 +335,12 @@ def customer_review(request):
     filter_review = reviews.objects.filter(customer=user, product=get_details_product)
 
     if filter_review:
-        messages.success(request, 'You Can not Give Feedback More Than Once.')
+        messages.success(request, 'You can only review this product once!')
         return redirect('product_detail', product_id)
     else:
 
         data_reviews = reviews(customer=user, product=get_details_product, ratings=rating_number, review_text=review_text)
         data_reviews.save()
 
-        messages.success(request, 'Your Review Has Been Added !!')
+        messages.success(request, 'Your review has been added.')
         return redirect('product_detail', product_id)
-
-

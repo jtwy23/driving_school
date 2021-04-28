@@ -9,6 +9,5 @@ urlpatterns = [
     path('customer_canceled_order', views.customer_canceled_order, name='customer_canceled_order'),  # Customer cancellations
     path('cart', views.cart, name='cart'),  # Cart
     path('checkout', views.checkout, name='checkout'),  # Checkout
-    path('payment', PaymentView.as_view(), name='payment'),  # Payment
-    
+    path('payment', PaymentView.as_view(), name='payment'),  # Payment    
 ]
