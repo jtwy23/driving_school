@@ -211,20 +211,20 @@ Site map and wire frames
 To keep the elegance and impactfulness of the website the following design choices were made:
  
 #### Fonts
-Title Text = Courier
-Main Text = Poppins
-Footer Text = Montserrat
+- Title Text = Courier
+- Main Text = Poppins
+- Footer Text = Montserrat
  
 #### Colors
-rgb(204, 0, 0) (Shade of Red - Title Heading)
-rgb(255, 0, 0) (Shade of Red)
-rgb(255, 191, 0) (Amber)
-rgb(0, 153, 51) (Green)
-rgb(113, 127, 224) (Blue - Carousel BTN Color)
-rgb(34, 34, 34) (Shade of Black - Subheading)
-rgb(34, 34, 34) (Shade of White - Footer text)
-rgb(255, 193, 7) (Gold - Shopping cart ico)
-rgb(23, 162, 184) (Cyan - User BTN)
+- rgb(204, 0, 0) (Shade of Red - Title Heading)
+- rgb(255, 0, 0) (Shade of Red)
+- rgb(255, 191, 0) (Amber)
+- rgb(0, 153, 51) (Green)
+- rgb(113, 127, 224) (Blue - Carousel BTN Color)
+- rgb(34, 34, 34) (Shade of Black - Subheading)
+- rgb(34, 34, 34) (Shade of White - Footer text)
+- rgb(255, 193, 7) (Gold - Shopping cart ico)
+- rgb(23, 162, 184) (Cyan - User BTN)
  
 ---
  
