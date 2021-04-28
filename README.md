@@ -300,16 +300,16 @@ pip3 install -r requirements.txt
  
 3. Add environment variables into your IDE (Gitpod)
  
-os.environ.get('STRIPE_API_KEY', 'YOUR_STRIPE_SECRET_KEY')
-os.environ.get('DATABASE_URL', 'YOUR_DATABASE_URL')
-os.environ.get('SECRET_KEY', 'YOUR_DJANGO_SECRET_KEY')
-os.environ.get('DEVELOPMENT', '1')
-os.environ.get('EMAIL_HOST_PASSWORD', 'YOUR_EMAIL_PASSWORD')
+- os.environ.get('STRIPE_API_KEY', 'YOUR_STRIPE_SECRET_KEY')
+- os.environ.get('DATABASE_URL', 'YOUR_DATABASE_URL')
+- os.environ.get('SECRET_KEY', 'YOUR_DJANGO_SECRET_KEY')
+- os.environ.get('DEVELOPMENT', '1')
+- os.environ.get('EMAIL_HOST_PASSWORD', 'YOUR_EMAIL_PASSWORD')
  
 4. From the IDE terminal, migrate the models:
  
-python3 manage.py makemigrations
-python3 manage.py migrate
+- python3 manage.py makemigrations
+- python3 manage.py migrate
  
 5. Create a superuser to access the admin panel.
  
@@ -352,12 +352,12 @@ DATABASES = {
  
 10. Migrate models to create the Postgress database:
  
-python manage.py makemigrations
-python manage.py migrate
+- python manage.py makemigrations
+- python manage.py migrate
  
 11. Create a superuser to access the admin panel:
  
-python manage.py createsuperuser
+`python manage.py createsuperuser`
  
 12. After you login to the admin panel, you can add data.
  
