@@ -61,3 +61,40 @@
 - The cart at this point should clear as the products have been saved to the database and they are now required to pay.
 - Once paid the user will be redirected back to index page and will be allowed to search and buy more products.
 
+#### Responsiveness
+- Chrome Dev Tools was used to test the sites responsivness.
+
+Below are my findings on devices and browsers laid out in tables:
+
+### Browser Test
+
+|      Browser      | Responsive | Appearance | Functionality |
+|:-----------------:|:----------:|:----------:|:-------------:|
+|   Google Chrome   |     Yes    |    Good    |      Good     |
+|      Firefox      |     Yes    |    Good    |      Good     |
+|       Opera       |     Yes    |    Good    |      Good     |
+|       Safari      |     Yes    |    Good    |      Good     |
+|        Edge       |     Yes    |    Good    |      Good     |
+| Internet Explorer |     Yes    |    Good    |      Good     |
+
+### Device Test
+
+|    Device    | Responsive | Appearance | Functionality |
+|:------------:|:----------:|:----------:|:-------------:|
+|   Galaxy S5  |     Yes    |    Good    |      Good     |
+|    Pixel 2   |     Yes    |    Good    |      Good     |
+|  iPhone 5/SE |     Yes    |    Good    |      Good     |
+| iPhone 6/7/8 |     Yes    |    Good    |      Good     |
+|   iPhone X   |     Yes    |    Good    |      Good     |
+|     iPad     |     Yes    |    Good    |      Good     |
+|   iPad Pro   |     Yes    |    Good    |      Good     |
+|  Surface Duo |     Yes    |    Good    |      Good     |
+
+- On all mobile devices I saw that the payment page was not working properly. The numbers ran into itself and is not clear for the user to know what is being entered. I tried to do a fix it with bootstrap and allowed for the horizontal slider to help users see what was being inputted
+
+---
+
+## Bugs
+
+
+
