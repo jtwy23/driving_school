@@ -90,11 +90,22 @@ Below are my findings on devices and browsers laid out in tables:
 |   iPad Pro   |     Yes    |    Good    |      Good     |
 |  Surface Duo |     Yes    |    Good    |      Good     |
 
-- On all mobile devices I saw that the payment page was not working properly. The numbers ran into itself and is not clear for the user to know what is being entered. I tried to do a fix it with bootstrap and allowed for the horizontal slider to help users see what was being inputted
+- On all mobile devices I saw that the payment page was not working properly. The numbers ran into itself and is not clear for the user to know what is being entered. I tried to do a fix it with bootstrap and allowed for the horizontal slider to help users see what was being inputted. However I was not happy with this and reverted back for a more responsive view. I will be fixing this problem at a later date.
 
 ---
 
 ## Bugs
+
+- Adding products bug. I was unable to add any products and have them display. This was fixed when I added the function into my index.html to display the products.
+
+- The search bar was not working no results showed and did not seem to be searching. This was due to an invalid url. When I changed it to the correct url the search worked as expected.
+
+- Cart page javascript code error. In the javascript the code repeatedly changed after saving. This issue was resolved by using the VS Code autosave function and the code seemed to remain the same. However whenever I restart my workspace the code reverts so I have had to push the code to heroku immediately before closing the work space and remember to correct the code before any other push after I restart the workspace.
+
+- Procfile did not push to heroku. This is because I had managed to start the main project in a sub folder instead of the root directory. To fix this I had to navigate back to root level change the procfile and then push to Heroku.
+
+- After my Heroku build the site did not open. I fixed this problem by going to my settings.py file and change the templates setting.
+
 
 
 
