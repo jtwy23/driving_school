@@ -98,6 +98,80 @@ Below are my findings on devices and browsers laid out in tables:
 
 ---
 
+## Code Validation
+
+- HTML code has a few warnings and errors. Due to my time constraint and my deadline I have not had the chance to correct these. The code has been tested and works across all platforms on the live site. I will continue to fix my errors over time to make the html code clean. The errors are showing up in All lessons, profile, edit profile, all pages related to orders. The errors are most inheritted from the base.html.
+
+CSS code has been ran through the validator and all work and clean.
+
+Javascript code has been ran through jshint and although some of the code has errors the code has been tested on the live site and it all runs as expected.
+
+Python code has been checked for PEP8 compliance. A lot of the python code was not PEP8 compliant through choice as I believed the code was more readable when lines were not seperated. Although some I did make split up and make PEP8 compliant. 
+
+---
+
+## Testing User Stories
+
+User Stories (New Users):
+- As a new user I would l like to be able to sign up quickly.
+    * Users can land on the page and see quickly the button on the navbar to sign up.
+- As a new user I would like to know I have signed up with an activation email.
+    * Upon signing up the user will recieve and email to activate account before they can utilize the sites discounts.
+- As a new user I would like to be able to update my profile.
+    * Once the user is signed up they can navigate easily to the my profile page through the button in the navbar.
+- As a new user I would like to know I am logged in.
+    * When user is signed in the navbar button will announce the users name 'Hello Username'
+
+User Stories (Site Admin):
+- As a user I would like to add, edit and delete products on the website.#
+    * From the admin panel the site admin can go to add catergories and products.
+- As a user I would like to be able to delete reviews that are offensive or incorrect.
+    * Site admin can go to product reviews and delete any unwanted reviews.
+- As a user I would like to add in new instructor details.
+    * Only the site admin can add in new instructors to the company. Instructors do not have a signup option like pupils.
+- As a user I would like to delete old instructors who are no longer with the company.
+    * Site admin can delete any unwanted or old instructors through instructor information table.
+- As a user I would like to delete old or unwanted users.
+    * This can be achieved from deleting users table.
+- As a user I would like to check all messages sent to the company through the contact form.
+    * From the admin panel the site Admin can login and check the contact us table where it shows the messages of pupils and saves the email address to reply to.
+- As a user I would like to be able to check which pupils are to be refunded.
+    * There is a customer refund table that you can see where pupils are to be refunded. Pupils not due a refund is not saved to the databasse.
+- As a user I would like to be able to fully control my content.
+    * The site admin has full control over the database and can create read update and delete everything.
+
+
+User Stories:
+- As a user I would like to be able to access the site across desktop, tablet and mobile platforms.
+    * I can view the site on all platforms and is fully responsive.
+- As a user I would like to contact the company easily with a form.
+    * There is a contact form a user can use to contact the company.
+- As a user I would like to add lessons into my shopping cart.
+    * The shopping cart is easily identifiable and increments when products are added.
+- As a user I would like to be able to clear my shopping cart contents.
+    * The shopping cart has a clear cart button that will clear the cart completely and quickly.
+- As a user I would buy lessons quickly.
+    * Users who have signed up can simply add products and buy. However users who are not signed up must do so first and then can buy products.
+- As a user I would like to have discounted lessons.
+    * The main enticement to the website is the 10% and 30% discount. When a user is signed up they will get a 10% discount every time they buy a lesson but if they spend over £100 they will always get a 30% discount.
+- As a user I would like to be able to track how many lessons I have bought.
+    * Users can check their my orders page and a list of lessons purchased will show up and allow them to track the amount of lessons they have bought.
+- As a user I would like to be able to cancel my lesson online.
+    * Users who purchase lessons have the option to cancel within the my orders page.
+- As a user I would like to know the name of my instructor.
+    * When users purchase a lesson, the site admin will then manually assign an instructor to the user and the user can check on the order and the name of the instructor will be displayed.
+- As a user I would like to be emailed when I have bought a lesson.
+    * All purchases will have an email sent out to the user. If the user bys multiple lessons each lesson will be shown in the email and will have a unique purchase ID.
+- As a user I would like to see details of the lesson I have bought in my email.
+    * The email sent out will detail what lesson was bought and for how much.
+- As a user I would like to know what the driving lesson entails.
+    * Within each of the products view in the site there is a short description of what the lesson is what contains and how long the driving is.
+- As a user I want to see the company’s social media links.
+    * All social media links are clicakable and take the user to the respective social media platforms.
+
+
+---
+
 ## Bugs
 
 - Adding products bug. I was unable to add any products and have them display. This was fixed when I added the function into my index.html to display the products.
@@ -110,9 +184,9 @@ Below are my findings on devices and browsers laid out in tables:
 
 - After my Heroku build the site did not open. I fixed this problem by going to my settings.py file and change the templates setting.
 
-- During development I had forgotten to add the secret keys into the env.py file and commited the secret keys to github. I have left the keys unchnaged but will change in the future by renewing all published secret keys and adding the new keys to an env.py file and making sure it is in the .gitignore file as well so the keys will be kept safe.
+- During development I had forgotten to add the secret keys into the env.py file and commited the secret keys to github. I have left the keys unchnaged due to my time constraint with the project deadline and my own work but will change in the future by renewing all published secret keys and adding the new keys to an env.py file and making sure it is in the .gitignore file as well so the keys will be kept safe. Also complete the gitpod environment variables.
 
-- A lot of the python code was not PEP8 compliant through choice as I believed the code was more readable when lines were not seperated.
+- The review and rating system works. However the rating stars could be made larger to be more eyecatching. If a user does not use the star rating on the inital review they will lose the chance to do so altogether. The review section is editable. There is no delete function built in as the site admin is the only person to have control over this and if the user did want it changed then they would need to contact the company.
 
 
 

@@ -102,6 +102,8 @@ To develop this website we have broken down the UX into its five planes to defin
 | Automatically assign instructors to pupils by location. |
 | Direct messaging system between instructor and pupil.   |
 | Instructor diary within the instructor dashboard.       |
+| Pagination                                              |
+| Reviews can only be made by user who purchased product. |
  
 #### Database Schema
  
