@@ -2,7 +2,7 @@
  
 ---
  
-![Logo](static/webapp1/images/logo.jpg)
+![Logo](driving_school/static/webapp1/images/logo.jpg)
  
 ---
  
@@ -201,11 +201,11 @@ The website is designed to look simple but elegant. Users will land on the page 
 ### Skeleton Plane
 Site map and wire frames
  
-- ![Desktop](static/webapp1/wireframes/desktop.pdf)
+- [Desktop](https://github.com/jtwy23/driving_school/blob/master/driving_school/static/webapp1/wireframes/desktop.pdf)
  
-- ![Mobile](static/webapp1/wireframes/mobile.pdf)
+- [Mobile](https://github.com/jtwy23/driving_school/blob/master/driving_school/static/webapp1/wireframes/mobile.pdf)
  
-- ![Tablet](static/webapp1/wireframes/tablet.pdf)
+- [Tablet](https://github.com/jtwy23/driving_school/blob/master/driving_school/static/webapp1/wireframes/tablet.pdf)
  
 ### Surface Plane
 To keep the elegance and impactfulness of the website the following design choices were made:
