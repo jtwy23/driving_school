@@ -9,13 +9,12 @@ import datetime
 from django.views.generic import ListView, DetailView, View
 import stripe
 from decouple import config
-import os
 
 # Create your views here.
 
 
 # stripe Secret key
-stripe.api_key = os.environ.get('STRIPE')
+stripe.api_key = config('STRIPE')
 
 
 def my_orders(request):
