@@ -91,6 +91,10 @@ To develop this website we have broken down the UX into its five planes to defin
 | Forgotten Password Functionality |
 | User Review Functionality        |
 | Social Media Links               |
+| User Reviews                     |
+| User Ratings                     |
+| Email Activation                 |
+| Email Purchase Order             |
  
 | Future Features:                                        |
 |---------------------------------------------------------|
@@ -267,14 +271,12 @@ To keep the elegance and impactfulness of the website the following design choic
  
 ---
 
-## Testing & Bugs
-
+## Testing
 All testing and bugs are logged in my testing file [here](/TESTING.md)
 
 ---
  
-## Deployment
- 
+## Deployment 
 This project is deployed using Git. It's hosted on Heroku and all static files, including images, are hosted on AWS S3 Bucket. Stripe is used for payments and Gmail for an email account.
  
 Before deploying the application, install the following modules:

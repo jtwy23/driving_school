@@ -66,7 +66,7 @@
 
 Below are my findings on devices and browsers laid out in tables:
 
-### Browser Test
+- Browser Test
 
 |      Browser      | Responsive | Appearance | Functionality |
 |:-----------------:|:----------:|:----------:|:-------------:|
@@ -92,6 +92,10 @@ Below are my findings on devices and browsers laid out in tables:
 
 - On all mobile devices I saw that the payment page was not working properly. The numbers ran into itself and is not clear for the user to know what is being entered. I tried to do a fix it with bootstrap and allowed for the horizontal slider to help users see what was being inputted. However I was not happy with this and reverted back for a more responsive view. I will be fixing this problem at a later date.
 
+- Back to top button works. When not in use it remains red and when pressed to go back up to top the button will turn green, It will also take you to the to of the page.
+
+- User reviews works well. When a user does a review for a product they cannot do another review for the same product. They can edit their review on the product if the choose to do so. Users cannot edit any other users reviews the edit button doesn't show.
+
 ---
 
 ## Bugs
@@ -106,6 +110,9 @@ Below are my findings on devices and browsers laid out in tables:
 
 - After my Heroku build the site did not open. I fixed this problem by going to my settings.py file and change the templates setting.
 
+- During development I had forgotten to add the secret keys into the env.py file and commited the secret keys to github. I have left the keys unchnaged but will change in the future by renewing all published secret keys and adding the new keys to an env.py file and making sure it is in the .gitignore file as well so the keys will be kept safe.
+
+- A lot of the python code was not PEP8 compliant through choice as I believed the code was more readable when lines were not seperated.
 
 
 
