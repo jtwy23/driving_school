@@ -2,7 +2,7 @@
  
 ---
  
-![Logo]()
+![Logo](static/webapp1/images/logo.jpg)
  
 ---
  
@@ -201,11 +201,11 @@ The website is designed to look simple but elegant. Users will land on the page 
 ### Skeleton Plane
 Site map and wire frames
  
-- [Desktop](https://)
+- ![Desktop](static/webapp1/wireframes/desktop.pdf)
  
-- [Mobile](https://)
+- ![Mobile](static/webapp1/wireframes/mobile.pdf)
  
-- [Tablet](https://)
+- ![Tablet](static/webapp1/wireframes/tablet.pdf)
  
 ### Surface Plane
 To keep the elegance and impactfulness of the website the following design choices were made:
@@ -269,7 +269,7 @@ To keep the elegance and impactfulness of the website the following design choic
 
 ## Testing & Bugs
 
-All testing and bugs are logged in my testing file here.
+All testing and bugs are logged in my testing file [here](/TESTING.md)
 
 ---
  
