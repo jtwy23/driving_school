@@ -102,11 +102,11 @@ Below are my findings on devices and browsers laid out in tables:
 
 - HTML code has a few warnings and errors. Due to my time constraint and my deadline I have not had the chance to correct these. The code has been tested and works across all platforms on the live site. I will continue to fix my errors over time to make the html code clean. The errors are showing up in All lessons, profile, edit profile, all pages related to orders. The errors are most inheritted from the base.html.
 
-CSS code has been ran through the validator and all work and clean.
+- CSS code has been ran through the validator and all work and clean.
 
-Javascript code has been ran through jshint and although some of the code has errors the code has been tested on the live site and it all runs as expected.
+- Javascript code has been ran through jshint and although some of the code has errors the code has been tested on the live site and it all runs as expected.
 
-Python code has been checked for PEP8 compliance. A lot of the python code was not PEP8 compliant through choice as I believed the code was more readable when lines were not seperated. Although some I did make split up and make PEP8 compliant. 
+- Python code has been checked for PEP8 compliance. A lot of the python code was not PEP8 compliant through choice as I believed the code was more readable when lines were not seperated. Although some I did make split up and make PEP8 compliant. 
 
 ---
 
