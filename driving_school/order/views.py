@@ -8,13 +8,12 @@ from home.models import customer_more_information, products
 import datetime
 from django.views.generic import ListView, DetailView, View
 import stripe
-from decouple import config
 
 # Create your views here.
 
 
 # stripe Secret key
-stripe.api_key = config('STRIPE')
+stripe.api_key = "sk_test_51IMFIgGHrfeW2r6w38JXjUr4HRvbtZymCmjpAIiOnTWn7I5xO4ixgqnjZD0JJacIb7N8WOG2iIkpJqWktplQNAJR007vAjrHfH"
 
 
 def my_orders(request):
